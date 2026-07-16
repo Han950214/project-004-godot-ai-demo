@@ -6,7 +6,7 @@ description: "Map test coverage to GDD critical paths, identify fixed bugs witho
 ## Codex 适配约束
 
 - 将本工作流视为项目级 Skill，而不是 Codex 内置斜杠命令。
-- 仅在 description 的窄触发条件满足时隐式调用；不得自动启动完整制作流程或推进下一阶段。
+- 本下游 Skill 默认不隐式调用；仅由用户显式 `$skill-name` 或 `game-studio-router` 定向选择。不得自动启动完整制作流程或推进下一阶段。
 - 用户保留产品与创意最终决策权；非关键实现细节采用合理默认并记录。
 - 如需子代理，只允许单层、最多 3 个、互斥写入范围；不得多 Agent 修改同一文件。
 - 使用当前 Codex 工具与沙箱；原工具许可、模型字段和权限语法已移除。

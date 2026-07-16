@@ -556,7 +556,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/architecture-decision/SKILL.md",
@@ -568,7 +568,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/architecture-review/SKILL.md",
@@ -580,7 +580,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/art-bible/SKILL.md",
@@ -592,7 +592,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/asset-audit/SKILL.md",
@@ -604,7 +604,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/asset-spec/SKILL.md",
@@ -616,7 +616,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/balance-check/SKILL.md",
@@ -628,7 +628,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/brainstorm/SKILL.md",
@@ -640,7 +640,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/bug-report/SKILL.md",
@@ -652,7 +652,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/bug-triage/SKILL.md",
@@ -664,7 +664,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/changelog/SKILL.md",
@@ -676,7 +676,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/code-review/SKILL.md",
@@ -688,7 +688,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/consistency-check/SKILL.md",
@@ -700,7 +700,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/content-audit/SKILL.md",
@@ -712,7 +712,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/create-architecture/SKILL.md",
@@ -724,7 +724,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/create-control-manifest/SKILL.md",
@@ -736,7 +736,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/create-epics/SKILL.md",
@@ -748,7 +748,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/create-stories/SKILL.md",
@@ -760,7 +760,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/day-one-patch/SKILL.md",
@@ -772,7 +772,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/design-review/SKILL.md",
@@ -784,7 +784,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/design-system/SKILL.md",
@@ -796,7 +796,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/dev-story/SKILL.md",
@@ -808,7 +808,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/estimate/SKILL.md",
@@ -820,7 +820,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/gate-check/SKILL.md",
@@ -832,7 +832,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/help/SKILL.md",
@@ -844,7 +844,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/hotfix/SKILL.md",
@@ -856,7 +856,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/launch-checklist/SKILL.md",
@@ -868,7 +868,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/localize/SKILL.md",
@@ -880,7 +880,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/map-systems/SKILL.md",
@@ -892,7 +892,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/milestone-review/SKILL.md",
@@ -904,7 +904,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/onboard/SKILL.md",
@@ -916,7 +916,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/patch-notes/SKILL.md",
@@ -928,7 +928,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/perf-profile/SKILL.md",
@@ -940,7 +940,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/playtest-report/SKILL.md",
@@ -952,7 +952,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/project-stage-detect/SKILL.md",
@@ -964,7 +964,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/propagate-design-change/SKILL.md",
@@ -976,7 +976,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/prototype/SKILL.md",
@@ -988,7 +988,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/qa-plan/SKILL.md",
@@ -1000,7 +1000,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/quick-design/SKILL.md",
@@ -1012,7 +1012,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/regression-suite/SKILL.md",
@@ -1024,7 +1024,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/release-checklist/SKILL.md",
@@ -1036,7 +1036,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/retrospective/SKILL.md",
@@ -1048,7 +1048,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/reverse-document/SKILL.md",
@@ -1060,7 +1060,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/review-all-gdds/SKILL.md",
@@ -1072,7 +1072,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/scope-check/SKILL.md",
@@ -1084,7 +1084,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/security-audit/SKILL.md",
@@ -1096,7 +1096,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/setup-engine/SKILL.md",
@@ -1108,7 +1108,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/skill-improve/SKILL.md",
@@ -1120,7 +1120,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/skill-test/SKILL.md",
@@ -1132,7 +1132,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/smoke-check/SKILL.md",
@@ -1144,7 +1144,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/soak-test/SKILL.md",
@@ -1156,7 +1156,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/sprint-plan/SKILL.md",
@@ -1168,7 +1168,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/sprint-status/SKILL.md",
@@ -1180,7 +1180,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/start/SKILL.md",
@@ -1192,7 +1192,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/story-done/SKILL.md",
@@ -1204,7 +1204,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/story-readiness/SKILL.md",
@@ -1216,7 +1216,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/team-audio/SKILL.md",
@@ -1228,7 +1228,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/team-combat/SKILL.md",
@@ -1240,7 +1240,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/team-level/SKILL.md",
@@ -1252,7 +1252,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/team-live-ops/SKILL.md",
@@ -1264,7 +1264,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/team-narrative/SKILL.md",
@@ -1276,7 +1276,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/team-polish/SKILL.md",
@@ -1288,7 +1288,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/team-qa/SKILL.md",
@@ -1300,7 +1300,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/team-release/SKILL.md",
@@ -1312,7 +1312,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/team-ui/SKILL.md",
@@ -1324,7 +1324,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/tech-debt/SKILL.md",
@@ -1336,7 +1336,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/test-evidence-review/SKILL.md",
@@ -1348,7 +1348,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/test-flakiness/SKILL.md",
@@ -1360,7 +1360,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/test-helpers/SKILL.md",
@@ -1372,7 +1372,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/test-setup/SKILL.md",
@@ -1384,7 +1384,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/ux-design/SKILL.md",
@@ -1396,7 +1396,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/ux-review/SKILL.md",
@@ -1408,7 +1408,7 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     },
     {
       "source_skill": ".claude/skills/vertical-slice/SKILL.md",
@@ -1420,9 +1420,15 @@
         "user-invocable",
         "argument-hint"
       ],
-      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+      "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。"
     }
   ],
+  "router": {
+    "name": "game-studio-router",
+    "status": "adapted",
+    "implicit_invocation": true,
+    "downstream_skills": 73
+  },
   "rules": [
     {
       "source_rule": ".claude/rules/ai-code.md",

@@ -5,6 +5,6 @@
 
 Codex 适配层位于 `AGENTS.md`、`.agents/skills/`、`.codex/agents/`、`.codex/hooks.json`、`.codex/rules/` 和 `.codex/config.toml`。本阶段已完成静态迁移；Godot 与 Godot MCP 实机验证因本机缺少 Godot 而延后，不宣称所有 Claude Hook 与 Codex 完全等价。
 
-当前统计：49 个自定义 Agent、73 个 Skill、11 个路径级规则映射。首次使用前请在 Codex 中信任项目级配置与 Hooks；需要工作流时可显式调用 `$start`、`$help`、`$project-stage-detect` 或其他 Skill。
+当前统计：49 个自定义 Agent、73 个下游 Skill、1 个自动路由 Skill、11 个路径级规则映射。首次使用前请在 Codex 中信任项目级配置与 Hooks；用户可自然描述游戏开发任务交给 `game-studio-router`，也可显式调用 `$start`、`$help`、`$project-stage-detect` 或其他下游 Skill。
 
 后续安装 Godot 4.x stable 后，按 `docs/codex-migration/runtime-validation-checklist.md` 完成独立运行验收。

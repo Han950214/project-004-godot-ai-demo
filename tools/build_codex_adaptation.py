@@ -1,16 +1,21 @@
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import pathlib
 import re
 import shutil
+import subprocess
 
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 SNAPSHOT = ROOT / "upstream" / "claude-code-game-studios-v1.0.0"
 SOURCE_COMMIT = "984023ddac0d5e27624f2baacde6105e45de375f"
+SOURCE_TREE = "45e93bee12c3f1d80052f7406f0180e9bece8382"
 SOURCE_REPOSITORY = "https://github.com/Donchitos/Claude-Code-Game-Studios.git"
+SOURCE_TAG = "v1.0.0"
+EXPECTED_SNAPSHOT_FILES = 417
 MCP_VERSION = "0.1.1"
 
 
@@ -132,23 +137,228 @@ def narrow_description(name: str, original: str, skill_names: list[str]) -> str:
     return f"{original} 当用户明确点名该流程或当前任务与其专业目标直接匹配时使用；不用于无关的一般开发任务。"
 
 
-def build_snapshot_metadata() -> None:
+def routing_metadata(name: str, description: str) -> dict[str, str]:
+    categories = {
+        "onboarding": {"adopt", "help", "onboard", "project-stage-detect", "setup-engine", "start"},
+        "concept-and-design": {
+            "architecture-decision", "art-bible", "asset-spec", "brainstorm", "create-architecture",
+            "create-control-manifest", "design-system", "map-systems", "quick-design", "ux-design",
+        },
+        "review-and-analysis": {
+            "architecture-review", "asset-audit", "balance-check", "consistency-check", "content-audit",
+            "design-review", "estimate", "perf-profile", "reverse-document", "review-all-gdds", "scope-check",
+            "security-audit", "tech-debt", "ux-review",
+        },
+        "production": {
+            "create-epics", "create-stories", "dev-story", "milestone-review", "propagate-design-change",
+            "retrospective", "sprint-plan", "sprint-status", "story-done", "story-readiness",
+        },
+        "quality": {
+            "bug-report", "bug-triage", "code-review", "playtest-report", "qa-plan", "regression-suite",
+            "smoke-check", "soak-test", "test-evidence-review", "test-flakiness", "test-helpers", "test-setup",
+        },
+        "release-and-operations": {
+            "changelog", "day-one-patch", "hotfix", "launch-checklist", "localize", "patch-notes",
+            "release-checklist",
+        },
+        "prototyping": {"prototype", "vertical-slice"},
+        "studio-meta": {"gate-check", "skill-improve", "skill-test"},
+    }
+    category = "team-collaboration" if name.startswith("team-") else next(
+        (candidate for candidate, names in categories.items() if name in names), "studio-meta"
+    )
+    stages = {
+        "onboarding": "discovery/setup",
+        "concept-and-design": "concept/pre-production",
+        "review-and-analysis": "current-stage review",
+        "production": "pre-production/production",
+        "quality": "testing/acceptance",
+        "release-and-operations": "release/live operations",
+        "prototyping": "concept/pre-production",
+        "team-collaboration": "current-stage collaboration",
+        "studio-meta": "any stage",
+    }
+    agent_rules = (
+        (("security",), "security-engineer"),
+        (("localize",), "localization-lead"),
+        (("audio",), "audio-director"),
+        (("narrative",), "narrative-director"),
+        (("art", "asset"), "art-director"),
+        (("ux", "ui"), "ux-designer"),
+        (("qa", "test", "bug", "smoke", "soak", "playtest", "regression"), "qa-lead"),
+        (("release", "patch", "hotfix", "changelog", "launch"), "release-manager"),
+        (("architecture", "perf", "tech-debt", "setup-engine"), "technical-director"),
+        (("dev-story", "code-review", "prototype", "vertical-slice"), "lead-programmer"),
+        (("design", "balance", "map-systems", "combat"), "game-designer"),
+    )
+    likely_agent = next(
+        (agent for needles, agent in agent_rules if any(needle in name for needle in needles)), "producer"
+    )
+    use_when = description.split("。", 1)[0].split(". ", 1)[0].strip()
+    if len(use_when) > 180:
+        use_when = use_when[:177].rstrip() + "..."
+    do_not = {
+        "team-collaboration": "普通单文件任务、无互斥并行工作面或未要求团队协作时不要使用。",
+        "release-and-operations": "尚未进入发布或线上运维阶段时不要使用。",
+        "quality": "没有可检查实现、构建、缺陷或验收输入时不要使用。",
+        "prototyping": "目标是直接交付正式生产实现且无需验证假设时不要使用。",
+    }.get(category, "任务不属于该专业流程，或会自动推进下一制作阶段时不要使用。")
+    return {
+        "name": name,
+        "category": category,
+        "stage": stages[category],
+        "use_when": use_when,
+        "do_not_use_when": do_not,
+        "likely_agent": likely_agent,
+    }
+
+
+def build_router(rows: list[dict[str, str]]) -> None:
+    router = ROOT / ".agents" / "skills" / "game-studio-router"
+    skill = """---
+name: game-studio-router
+description: "在用户提出游戏策划、原型、系统设计、开发、测试、发布或明确团队协作任务，但未点名具体 Game Studio Skill 时自动路由。普通非游戏任务、已显式调用下游 $skill 或仅需简单问答时不触发。"
+---
+
+# Game Studio Router
+
+## 目标
+
+把用户的游戏开发请求路由到最窄、最合适的项目 Skill。用户不需要预先知道 Skill 名称。
+
+## 路由流程
+
+1. 只读取识别当前制作阶段和任务类别所需的最小上下文；不扫描全部历史。
+2. 读取 `references/skill-index.md`，按 `stage`、`category`、`use_when` 和 `do_not_use_when` 筛选。
+3. 默认只选择一个下游 Skill，并读取该 Skill 的 `SKILL.md` 后执行其流程。
+4. 仅当任务确实存在两个或三个互斥且可独立并行的工作面时，才增加第二或第三个下游 Skill；写入范围必须互斥。
+5. 不一次加载全部 73 个下游 Skill，不一次召集全部 Agent，不允许子代理递归委派。
+6. 不自动进入下一制作阶段；阶段转换、产品方向和创意取舍仍由用户决定。
+7. 如果用户已显式调用 `$skill-name`，直接遵循该 Skill，不再二次路由。
+
+## 输出
+
+内部记录选择的阶段、类别、下游 Skill 和原因；只向用户呈现完成任务所需的信息，不要求用户学习路由表。
+"""
+    write(router / "SKILL.md", skill)
+    write(
+        router / "agents" / "openai.yaml",
+        "interface:\n"
+        "  display_name: \"Game Studio Router\"\n"
+        "  short_description: \"自动选择最窄的游戏工作室流程，不推进未授权阶段。\"\n"
+        "  default_prompt: \"识别当前游戏开发阶段和任务类别，并路由到最合适的单个下游 Skill。\"\n"
+        "policy:\n"
+        "  allow_implicit_invocation: true\n",
+    )
+    grouped: dict[str, list[dict[str, str]]] = {}
+    for row in rows:
+        grouped.setdefault(row["category"], []).append(row)
+    sections = [
+        "# Game Studio Skill Index",
+        "",
+        "本索引只供 `game-studio-router` 定向选择下游 Skill；73 个下游 Skill 均关闭隐式调用，但仍支持显式 `$skill-name`。",
+        "",
+    ]
+    for category in sorted(grouped):
+        sections.extend(
+            [
+                f"## {category}",
+                "",
+                "| name | stage | use_when | do_not_use_when | likely_agent |",
+                "| --- | --- | --- | --- | --- |",
+            ]
+        )
+        for row in sorted(grouped[category], key=lambda item: item["name"]):
+            values = [
+                f"`{row['name']}`",
+                row["stage"],
+                row["use_when"],
+                row["do_not_use_when"],
+                f"`{row['likely_agent']}`",
+            ]
+            sections.append("| " + " | ".join(value.replace("|", "\\|") for value in values) + " |")
+        sections.append("")
+    write(router / "references" / "skill-index.md", "\n".join(sections))
+
+
+def checkout_git(source: pathlib.Path, *args: str) -> str:
+    result = subprocess.run(
+        ["git", "-c", f"safe.directory={source.as_posix()}", "-C", str(source), *args],
+        check=False,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+    )
+    if result.returncode != 0:
+        raise RuntimeError(f"git {' '.join(args)} failed for verified source: {result.stderr.strip()}")
+    return result.stdout.strip()
+
+
+def source_files(base: pathlib.Path) -> dict[str, pathlib.Path]:
+    return {
+        path.relative_to(base).as_posix(): path
+        for path in sorted(base.rglob("*"))
+        if path.is_file() and ".git" not in path.relative_to(base).parts
+    }
+
+
+def sha256_files(files: dict[str, pathlib.Path]) -> dict[str, str]:
+    return {relative: hashlib.sha256(path.read_bytes()).hexdigest() for relative, path in files.items()}
+
+
+def build_source_manifest(verified_source: pathlib.Path) -> None:
+    verified_source = verified_source.resolve()
+    if not (verified_source / ".git").exists():
+        raise RuntimeError(f"verified source is not a Git checkout: {verified_source}")
+    head = checkout_git(verified_source, "rev-parse", "HEAD")
+    tree = checkout_git(verified_source, "rev-parse", "HEAD^{tree}")
+    tag_commit = checkout_git(verified_source, "rev-list", "-n", "1", SOURCE_TAG)
+    origin = checkout_git(verified_source, "remote", "get-url", "origin")
+    status = checkout_git(verified_source, "status", "--porcelain")
+    if head != SOURCE_COMMIT or tag_commit != SOURCE_COMMIT:
+        raise RuntimeError(f"verified source commit mismatch: HEAD={head}, tag={tag_commit}")
+    if tree != SOURCE_TREE:
+        raise RuntimeError(f"verified source tree mismatch: expected {SOURCE_TREE}, got {tree}")
+    if origin.rstrip("/") != SOURCE_REPOSITORY.rstrip("/"):
+        raise RuntimeError(f"verified source origin mismatch: {origin}")
+    if status:
+        raise RuntimeError("verified source checkout is not clean")
+
+    verified_files = source_files(verified_source)
+    snapshot_files = source_files(SNAPSHOT)
+    if len(verified_files) != EXPECTED_SNAPSHOT_FILES:
+        raise RuntimeError(
+            f"verified source file count mismatch: expected {EXPECTED_SNAPSHOT_FILES}, got {len(verified_files)}"
+        )
+    if set(verified_files) != set(snapshot_files):
+        missing = sorted(set(verified_files) - set(snapshot_files))
+        extra = sorted(set(snapshot_files) - set(verified_files))
+        raise RuntimeError(f"snapshot file set mismatch: missing={missing[:8]}, extra={extra[:8]}")
+    verified_hashes = sha256_files(verified_files)
+    snapshot_hashes = sha256_files(snapshot_files)
+    mismatches = [relative for relative in verified_hashes if verified_hashes[relative] != snapshot_hashes[relative]]
+    if mismatches:
+        raise RuntimeError(f"snapshot hash mismatch: {mismatches[:8]}")
+
+    manifest = {
+        "repository": SOURCE_REPOSITORY,
+        "tag": SOURCE_TAG,
+        "commit": SOURCE_COMMIT,
+        "tree": SOURCE_TREE,
+        "manifest_generated_from": "verified_source_checkout",
+        "file_count": len(verified_hashes),
+        "files": verified_hashes,
+    }
+    write(ROOT / "upstream" / "SOURCE-MANIFEST.json", json.dumps(manifest, ensure_ascii=False, indent=2))
     metadata = {
         "repository": SOURCE_REPOSITORY,
-        "tag": "v1.0.0",
+        "tag": SOURCE_TAG,
         "commit": SOURCE_COMMIT,
+        "tree": SOURCE_TREE,
         "license": "MIT",
         "snapshot_modified": False,
     }
     write(ROOT / "upstream" / "UPSTREAM.json", json.dumps(metadata, ensure_ascii=False, indent=2))
-    hashes: dict[str, str] = {}
-    for path in sorted(p for p in SNAPSHOT.rglob("*") if p.is_file()):
-        relative = path.relative_to(SNAPSHOT).as_posix()
-        hashes[relative] = hashlib.sha256(path.read_bytes()).hexdigest()
-    write(
-        ROOT / "upstream" / "SNAPSHOT-SHA256.json",
-        json.dumps({"algorithm": "sha256", "files": hashes}, ensure_ascii=False, indent=2),
-    )
 
 
 def build_root_files(agent_names: list[str], skill_names: list[str]) -> None:
@@ -161,7 +371,7 @@ def build_root_files(agent_names: list[str], skill_names: list[str]) -> None:
 
 Codex 适配层位于 `AGENTS.md`、`.agents/skills/`、`.codex/agents/`、`.codex/hooks.json`、`.codex/rules/` 和 `.codex/config.toml`。本阶段已完成静态迁移；Godot 与 Godot MCP 实机验证因本机缺少 Godot 而延后，不宣称所有 Claude Hook 与 Codex 完全等价。
 
-当前统计：{len(agent_names)} 个自定义 Agent、{len(skill_names)} 个 Skill、11 个路径级规则映射。首次使用前请在 Codex 中信任项目级配置与 Hooks；需要工作流时可显式调用 `$start`、`$help`、`$project-stage-detect` 或其他 Skill。
+当前统计：{len(agent_names)} 个自定义 Agent、{len(skill_names)} 个下游 Skill、1 个自动路由 Skill、11 个路径级规则映射。首次使用前请在 Codex 中信任项目级配置与 Hooks；用户可自然描述游戏开发任务交给 `game-studio-router`，也可显式调用 `$start`、`$help`、`$project-stage-detect` 或其他下游 Skill。
 
 后续安装 Godot 4.x stable 后，按 `docs/codex-migration/runtime-validation-checklist.md` 完成独立运行验收。
 """
@@ -189,7 +399,7 @@ Codex 适配层位于 `AGENTS.md`、`.agents/skills/`、`.codex/agents/`、`.cod
 - 制作与总监层负责方向、跨部门冲突和质量门禁：{', '.join(directors + ['producer'])}。
 - 部门负责人负责拆解、验收和升级：{', '.join(leads)}。
 - 专家只在各自领域内工作；跨领域改动先报告给对应负责人或主 Agent，不得擅自扩大范围。
-- 自定义 Agent 位于 `.codex/agents/`，Skill 位于 `.agents/skills/`。只按任务需要选择角色，不得一次召集全部角色。
+- 自定义 Agent 位于 `.codex/agents/`，Skill 位于 `.agents/skills/`。未显式点名 Skill 时由 `game-studio-router` 从索引选择最窄流程；只按任务需要选择角色，不得一次加载全部 Skill 或召集全部角色。
 - 子代理最多 4 个线程、深度 1；只读且互斥的分析可并行，写入默认由主 Agent 单线程完成。子代理不得继续创建子代理。
 
 ## 工作流
@@ -286,10 +496,11 @@ def build_skills(skill_names: list[str]) -> list[dict[str, object]]:
     source_dir = SNAPSHOT / ".claude" / "skills"
     target_dir = ROOT / ".agents" / "skills"
     mappings: list[dict[str, object]] = []
+    routing_rows: list[dict[str, str]] = []
     adaptation = """## Codex 适配约束
 
 - 将本工作流视为项目级 Skill，而不是 Codex 内置斜杠命令。
-- 仅在 description 的窄触发条件满足时隐式调用；不得自动启动完整制作流程或推进下一阶段。
+- 本下游 Skill 默认不隐式调用；仅由用户显式 `$skill-name` 或 `game-studio-router` 定向选择。不得自动启动完整制作流程或推进下一阶段。
 - 用户保留产品与创意最终决策权；非关键实现细节采用合理默认并记录。
 - 如需子代理，只允许单层、最多 3 个、互斥写入范围；不得多 Agent 修改同一文件。
 - 使用当前 Codex 工具与沙箱；原工具许可、模型字段和权限语法已移除。
@@ -310,7 +521,7 @@ def build_skills(skill_names: list[str]) -> list[dict[str, object]]:
             f"  short_description: {json.dumps(short, ensure_ascii=False)}\n"
             f"  default_prompt: {json.dumps('使用 $' + name + ' 完成当前明确范围内的工作。', ensure_ascii=False)}\n\n"
             "policy:\n"
-            "  allow_implicit_invocation: true\n"
+            "  allow_implicit_invocation: false\n"
         )
         write(target / "agents" / "openai.yaml", openai_yaml)
         upstream = f"""
@@ -332,9 +543,11 @@ def build_skills(skill_names: list[str]) -> list[dict[str, object]]:
                 "target_skill": f".agents/skills/{name}/SKILL.md",
                 "status": "converted",
                 "claude_specific_fields_removed": removed,
-                "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。",
+                "behavior_differences": "下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。",
             }
         )
+        routing_rows.append(routing_metadata(name, description))
+    build_router(routing_rows)
     return mappings
 
 
@@ -374,6 +587,11 @@ prefix_rule(pattern = ["git", "reset"], decision = "forbidden", justification = 
 prefix_rule(pattern = ["git", "clean"], decision = "forbidden", justification = "禁止自动删除未跟踪文件。", match = ["git clean -fd"])
 prefix_rule(pattern = ["git", "rebase"], decision = "forbidden", justification = "禁止自动改写提交历史。", match = ["git rebase main"])
 prefix_rule(pattern = ["git", "commit", "--amend"], decision = "forbidden", justification = "禁止 amend；需要修复时创建新提交。", match = ["git commit --amend"])
+prefix_rule(pattern = ["git.exe", "push"], decision = "forbidden", justification = "本项目禁止 push；仅创建本地提交。", match = ["git.exe push origin main"])
+prefix_rule(pattern = ["git.exe", "reset"], decision = "forbidden", justification = "禁止改写或丢弃工作区历史。", match = ["git.exe reset --hard HEAD"])
+prefix_rule(pattern = ["git.exe", "clean"], decision = "forbidden", justification = "禁止自动删除未跟踪文件。", match = ["git.exe clean -fd"])
+prefix_rule(pattern = ["git.exe", "rebase"], decision = "forbidden", justification = "禁止自动改写提交历史。", match = ["git.exe rebase main"])
+prefix_rule(pattern = ["git.exe", "commit", "--amend"], decision = "forbidden", justification = "禁止 amend；需要修复时创建新提交。", match = ["git.exe commit --amend"])
 prefix_rule(pattern = ["rm", "-rf"], decision = "forbidden", justification = "禁止递归强制删除；改用精确、可审查的文件操作。", match = ["rm -rf build"])
 prefix_rule(pattern = ["Remove-Item", "-Recurse", "-Force"], decision = "forbidden", justification = "禁止 PowerShell 递归强制删除。", match = ["Remove-Item -Recurse -Force build"])
 """
@@ -386,6 +604,7 @@ HOOK_SCRIPT = r'''from __future__ import annotations
 import json
 import pathlib
 import re
+import shlex
 import subprocess
 import sys
 
@@ -421,6 +640,64 @@ def repo_root(cwd: str) -> pathlib.Path:
 
 def deny(reason: str) -> None:
     emit({"hookSpecificOutput": {"hookEventName": "PreToolUse", "permissionDecision": "deny", "permissionDecisionReason": reason}})
+
+
+def parse_git_operation(command: str) -> tuple[str, list[str]] | None:
+    try:
+        tokens = [token.strip('"\'') for token in shlex.split(command, posix=False)]
+    except ValueError:
+        return None
+    git_index: int | None = None
+    for index, token in enumerate(tokens):
+        executable = token.replace("/", "\\").rsplit("\\", 1)[-1].lower()
+        if executable in {"git", "git.exe"}:
+            git_index = index
+            break
+    if git_index is None:
+        return None
+    args = tokens[git_index + 1 :]
+    options_with_value = {"-C", "-c", "--git-dir", "--work-tree", "--namespace"}
+    flag_options = {"--no-pager", "--paginate"}
+    index = 0
+    while index < len(args):
+        token = args[index]
+        if token == "--":
+            index += 1
+            break
+        if token in options_with_value:
+            index += 2
+            continue
+        if token in flag_options:
+            index += 1
+            continue
+        if any(token.startswith(option + "=") for option in options_with_value if option.startswith("--")):
+            index += 1
+            continue
+        if token.startswith("-C") and token != "-C":
+            index += 1
+            continue
+        if token.startswith("-c") and token != "-c":
+            index += 1
+            continue
+        if token.startswith("-"):
+            index += 1
+            continue
+        break
+    if index >= len(args):
+        return None
+    return args[index].lower(), args[index + 1 :]
+
+
+def detect_forbidden_git_operation(command: str) -> str | None:
+    parsed = parse_git_operation(command)
+    if parsed is None:
+        return None
+    subcommand, args = parsed
+    if subcommand in {"push", "reset", "clean", "rebase"}:
+        return f"本项目禁止 git {subcommand}。"
+    if subcommand == "commit" and any(arg == "--amend" or arg.startswith("--amend=") for arg in args):
+        return "本项目禁止 git commit --amend。"
+    return None
 
 
 def changed_files(root: pathlib.Path) -> list[pathlib.Path]:
@@ -476,17 +753,15 @@ def main() -> int:
     if mode == "pre-tool":
         tool_input = data.get("tool_input")
         command = str(tool_input.get("command", "")) if isinstance(tool_input, dict) else ""
-        dangerous = [
-            (r"(?i)(?:^|\s)git\s+push\b", "本项目禁止 git push。"),
-            (r"(?i)(?:^|\s)git\s+(?:reset|clean|rebase)\b", "本项目禁止 reset、clean 或 rebase。"),
-            (r"(?i)(?:^|\s)git\s+commit\s+--amend\b", "本项目禁止 git commit --amend。"),
-            (r"(?i)(?:^|\s)(?:cat|type|Get-Content)\b[^\n]*[\\/]?\.env\b", "禁止读取 .env。"),
-        ]
-        for pattern, reason in dangerous:
-            if re.search(pattern, command):
-                deny(reason)
-                return 0
-        if re.search(r"(?i)(?:^|\s)git\s+commit\b", command):
+        forbidden = detect_forbidden_git_operation(command)
+        if forbidden:
+            deny(forbidden)
+            return 0
+        if re.search(r"(?i)(?:^|\s)(?:cat|type|Get-Content)\b[^\n]*[\\/]?\.env\b", command):
+            deny("禁止读取 .env。")
+            return 0
+        parsed_git = parse_git_operation(command)
+        if parsed_git is not None and parsed_git[0] == "commit":
             result = subprocess.run(["git", "diff", "--cached", "--name-only"], cwd=root, check=False, capture_output=True, text=True, encoding="utf-8")
             errors = validate_json([root / line for line in result.stdout.splitlines() if line.strip()])
             if errors:
@@ -616,7 +891,7 @@ def build_docs(
     architecture = f"""
 # 迁移架构
 
-固定上游 `v1.0.0` / `{SOURCE_COMMIT}` 以未修改快照保存在 `upstream/`。活动适配层与快照分离：根 `AGENTS.md` 负责总则和路由，`.codex/agents/` 承载 49 个独立 Agent，`.agents/skills/` 承载 73 个 Skill，路径规则落到最近层级 `AGENTS.md`，生命周期行为由 `.codex/hooks.json` 和 Python command Hook 实现。
+固定上游 `v1.0.0` / `{SOURCE_COMMIT}` / tree `{SOURCE_TREE}` 以未修改快照保存在 `upstream/`。`SOURCE-MANIFEST.json` 只能从经过 Git commit、tree、origin 和 clean 状态验证的源 checkout 生成，再与目标快照双向比对。活动适配层与快照分离：根 `AGENTS.md` 负责总则，`.codex/agents/` 承载 49 个独立 Agent，`.agents/skills/` 承载 73 个关闭隐式调用的下游 Skill 和唯一隐式 `game-studio-router`，路径规则落到最近层级 `AGENTS.md`，生命周期行为由 `.codex/hooks.json` 和 Python command Hook 实现。
 
 状态词严格区分 `preserved`、`converted`、`adapted`、`deferred`、`unsupported`。Godot 与 MCP 运行验证为 `deferred_missing_godot`，不影响静态迁移验收。
 """
@@ -628,9 +903,9 @@ def build_docs(
 | --- | --- | --- |
 | 上游源码与 Claude 配置 | preserved | 完整快照，逐文件 SHA-256 固定，不作为活动配置。 |
 | Agents | converted | 独立 TOML；移除 Claude 模型/工具字段，继承 Codex 会话权限。 |
-| Skills | converted | Codex frontmatter、UI 元数据和隐式调用策略；完整工作流保留并适配。 |
+| Skills | converted | 73 个下游 Skill 保留完整工作流并关闭隐式调用；唯一隐式 `game-studio-router` 按索引定向选择。 |
 | 路径 Rules | converted | 最近层级 `AGENTS.md`。 |
-| Shell deny 规则 | adapted | `.codex/rules/game-studio-safety.rules` 与 PreToolUse 双层防护。 |
+| Shell deny 规则 | adapted | `.codex/rules/game-studio-safety.rules` 与 PreToolUse 提供双层辅助护栏；不能替代任务边界、沙箱、审批和权限系统。 |
 | Session/Tool/Compact/Subagent/Stop Hooks | adapted | 当前 Codex command Hook 事件；不做隐式状态日志写入。 |
 | Notification Hook | unsupported | 当前稳定事件列表没有 Notification，Windows toast 未启用。 |
 | Codex 运行发现 | deferred | WindowsApps CLI 执行受限；需新任务/重启后实测。 |
@@ -639,7 +914,7 @@ def build_docs(
     write(docs / "compatibility-matrix.md", compatibility)
     write(docs / "agents-mapping.md", "# Agents 映射\n\n" + markdown_table(agent_mappings, ["source_agent", "target_toml", "status", "claude_specific_fields_removed", "behavior_differences"]))
     write(docs / "skills-mapping.md", "# Skills 映射\n\n" + markdown_table(skill_mappings, ["source_skill", "target_skill", "status", "claude_specific_fields_removed", "behavior_differences"]))
-    write(docs / "rules-mapping.md", "# Rules 映射\n\n" + markdown_table(rule_mappings, ["source_rule", "source_paths", "target_agents_md", "status", "behavior_differences"]) + "\nShell deny 配置另迁移为 `.codex/rules/game-studio-safety.rules`；共 1 个 command rules 文件。")
+    write(docs / "rules-mapping.md", "# Rules 映射\n\n" + markdown_table(rule_mappings, ["source_rule", "source_paths", "target_agents_md", "status", "behavior_differences"]) + "\nShell deny 配置另迁移为 `.codex/rules/game-studio-safety.rules`；共 1 个 command rules 文件。Rules 与 Hooks 都是辅助护栏，不能替代任务边界、Codex 沙箱、审批和权限系统。")
     write(docs / "hooks-mapping.md", "# Hooks 映射\n\n" + markdown_table(hook_mappings, ["source_hook", "source_event", "target_event", "status", "target_script", "behavior_difference"]) + "\n运行加载验证：`deferred_codex_cli`。")
     godot_mcp = f"""
 # Godot MCP
@@ -656,7 +931,7 @@ def build_docs(
     verification = """
 # 静态验证
 
-运行 `python tools/verify_codex_migration.py`（Windows 也可使用可用的 Python 3.12 可执行文件）验证快照哈希、Agent/Skill 数量与结构、TOML/JSON、路径规则、Hooks、安全边界和跨项目引用。另运行 `python -m unittest tests/test_verify_codex_migration.py` 与 `git diff --check`。
+先以 `python tools/build_codex_adaptation.py --verified-source <checkout>` 从固定、clean 的上游 checkout 生成 `SOURCE-MANIFEST.json` 并双向验证快照。再运行 `python tools/verify_codex_migration.py`（Windows 也可使用可用的 Python 3.12 可执行文件）验证来源清单、固定数量、Router/Skill 结构、TOML/JSON、路径规则、Hooks、安全边界和跨项目引用。另运行 `python -m unittest tests/test_verify_codex_migration.py` 与 `git diff --check`。
 
 Codex CLI、Hook 实际加载、Skill/Agent 实际发现、Godot 编辑器和 MCP 工具调用属于后续运行验收，不得从静态结果推断成功。
 """
@@ -669,7 +944,7 @@ Codex CLI、Hook 实际加载、Skill/Agent 实际发现、Godot 编辑器和 MC
 - [ ] 启动 MCP server，确认固定包版本。
 - [ ] 调用 get Godot version、list projects、project info。
 - [ ] 调用 launch editor、run project、get debug output、stop project。
-- [ ] 在新的 Codex App 任务中确认 73 个 Skill 与 49 个自定义 Agent 可发现。
+- [ ] 在新的 Codex App 任务中确认 73 个下游 Skill、`game-studio-router` 与 49 个自定义 Agent 可发现。
 - [ ] 在受信任项目中审阅并信任 Hooks，逐项触发 SessionStart、PreToolUse、PostToolUse、Pre/PostCompact、SubagentStart/Stop、Stop。
 - [ ] 确认 `notify.sh` 仍为 unsupported，未误报为已转换。
 """
@@ -678,6 +953,12 @@ Codex CLI、Hook 实际加载、Skill/Agent 实际发现、Godot 编辑器和 MC
         "upstream": {"repository": SOURCE_REPOSITORY, "tag": "v1.0.0", "commit": SOURCE_COMMIT},
         "agents": agent_mappings,
         "skills": skill_mappings,
+        "router": {
+            "name": "game-studio-router",
+            "status": "adapted",
+            "implicit_invocation": True,
+            "downstream_skills": len(skill_mappings),
+        },
         "rules": rule_mappings,
         "hooks": hook_mappings,
         "godot_mcp": {"package": "@coding-solo/godot-mcp", "version": MCP_VERSION, "enabled": False, "runtime": "deferred_missing_godot"},
@@ -685,12 +966,20 @@ Codex CLI、Hook 实际加载、Skill/Agent 实际发现、Godot 编辑器和 MC
     write(docs / "migration-manifest.json", json.dumps(manifest, ensure_ascii=False, indent=2))
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description="Build the Codex adaptation from a verified upstream checkout.")
+    parser.add_argument(
+        "--verified-source",
+        type=pathlib.Path,
+        required=True,
+        help="Clean Git checkout at the pinned upstream commit used to generate SOURCE-MANIFEST.json.",
+    )
+    args = parser.parse_args(argv)
     if not SNAPSHOT.is_dir():
         raise SystemExit(f"missing snapshot: {SNAPSHOT}")
     source_skills = sorted(p.name for p in (SNAPSHOT / ".claude" / "skills").iterdir() if p.is_dir())
     source_agents = sorted(p.stem for p in (SNAPSHOT / ".claude" / "agents").glob("*.md"))
-    build_snapshot_metadata()
+    build_source_manifest(args.verified_source)
     build_root_files(source_agents, source_skills)
     build_reference_docs(source_skills)
     agent_mappings = build_agents(source_skills)

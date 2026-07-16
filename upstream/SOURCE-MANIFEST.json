@@ -1,5 +1,10 @@
 {
-  "algorithm": "sha256",
+  "repository": "https://github.com/Donchitos/Claude-Code-Game-Studios.git",
+  "tag": "v1.0.0",
+  "commit": "984023ddac0d5e27624f2baacde6105e45de375f",
+  "tree": "45e93bee12c3f1d80052f7406f0180e9bece8382",
+  "manifest_generated_from": "verified_source_checkout",
+  "file_count": 417,
   "files": {
     ".claude/agent-memory/lead-programmer/MEMORY.md": "ca114ddd1166ce24b5ec4145b36ea89b90557dd22af84a0c5b2f2873e02a7f84",
     ".claude/agents/accessibility-specialist.md": "69b1b0637681892207fd94c9625b658767bf52cb5eabf115238325ffacb54e90",

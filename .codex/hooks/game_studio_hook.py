@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import pathlib
 import re
+import shlex
 import subprocess
 import sys
 
@@ -38,6 +39,64 @@ def repo_root(cwd: str) -> pathlib.Path:
 
 def deny(reason: str) -> None:
     emit({"hookSpecificOutput": {"hookEventName": "PreToolUse", "permissionDecision": "deny", "permissionDecisionReason": reason}})
+
+
+def parse_git_operation(command: str) -> tuple[str, list[str]] | None:
+    try:
+        tokens = [token.strip('"\'') for token in shlex.split(command, posix=False)]
+    except ValueError:
+        return None
+    git_index: int | None = None
+    for index, token in enumerate(tokens):
+        executable = token.replace("/", "\\").rsplit("\\", 1)[-1].lower()
+        if executable in {"git", "git.exe"}:
+            git_index = index
+            break
+    if git_index is None:
+        return None
+    args = tokens[git_index + 1 :]
+    options_with_value = {"-C", "-c", "--git-dir", "--work-tree", "--namespace"}
+    flag_options = {"--no-pager", "--paginate"}
+    index = 0
+    while index < len(args):
+        token = args[index]
+        if token == "--":
+            index += 1
+            break
+        if token in options_with_value:
+            index += 2
+            continue
+        if token in flag_options:
+            index += 1
+            continue
+        if any(token.startswith(option + "=") for option in options_with_value if option.startswith("--")):
+            index += 1
+            continue
+        if token.startswith("-C") and token != "-C":
+            index += 1
+            continue
+        if token.startswith("-c") and token != "-c":
+            index += 1
+            continue
+        if token.startswith("-"):
+            index += 1
+            continue
+        break
+    if index >= len(args):
+        return None
+    return args[index].lower(), args[index + 1 :]
+
+
+def detect_forbidden_git_operation(command: str) -> str | None:
+    parsed = parse_git_operation(command)
+    if parsed is None:
+        return None
+    subcommand, args = parsed
+    if subcommand in {"push", "reset", "clean", "rebase"}:
+        return f"本项目禁止 git {subcommand}。"
+    if subcommand == "commit" and any(arg == "--amend" or arg.startswith("--amend=") for arg in args):
+        return "本项目禁止 git commit --amend。"
+    return None
 
 
 def changed_files(root: pathlib.Path) -> list[pathlib.Path]:
@@ -93,17 +152,15 @@ def main() -> int:
     if mode == "pre-tool":
         tool_input = data.get("tool_input")
         command = str(tool_input.get("command", "")) if isinstance(tool_input, dict) else ""
-        dangerous = [
-            (r"(?i)(?:^|\s)git\s+push\b", "本项目禁止 git push。"),
-            (r"(?i)(?:^|\s)git\s+(?:reset|clean|rebase)\b", "本项目禁止 reset、clean 或 rebase。"),
-            (r"(?i)(?:^|\s)git\s+commit\s+--amend\b", "本项目禁止 git commit --amend。"),
-            (r"(?i)(?:^|\s)(?:cat|type|Get-Content)\b[^\n]*[\\/]?\.env\b", "禁止读取 .env。"),
-        ]
-        for pattern, reason in dangerous:
-            if re.search(pattern, command):
-                deny(reason)
-                return 0
-        if re.search(r"(?i)(?:^|\s)git\s+commit\b", command):
+        forbidden = detect_forbidden_git_operation(command)
+        if forbidden:
+            deny(forbidden)
+            return 0
+        if re.search(r"(?i)(?:^|\s)(?:cat|type|Get-Content)\b[^\n]*[\\/]?\.env\b", command):
+            deny("禁止读取 .env。")
+            return 0
+        parsed_git = parse_git_operation(command)
+        if parsed_git is not None and parsed_git[0] == "commit":
             result = subprocess.run(["git", "diff", "--cached", "--name-only"], cwd=root, check=False, capture_output=True, text=True, encoding="utf-8")
             errors = validate_json([root / line for line in result.stdout.splitlines() if line.strip()])
             if errors:

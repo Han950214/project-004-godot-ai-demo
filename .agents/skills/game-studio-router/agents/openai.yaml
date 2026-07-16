@@ -1,0 +1,6 @@
+interface:
+  display_name: "Game Studio Router"
+  short_description: "自动选择最窄的游戏工作室流程，不推进未授权阶段。"
+  default_prompt: "识别当前游戏开发阶段和任务类别，并路由到最合适的单个下游 Skill。"
+policy:
+  allow_implicit_invocation: true

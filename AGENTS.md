@@ -12,7 +12,7 @@
 - 制作与总监层负责方向、跨部门冲突和质量门禁：art-director, audio-director, creative-director, narrative-director, technical-director, producer。
 - 部门负责人负责拆解、验收和升级：lead-programmer, localization-lead, producer, qa-lead, release-manager。
 - 专家只在各自领域内工作；跨领域改动先报告给对应负责人或主 Agent，不得擅自扩大范围。
-- 自定义 Agent 位于 `.codex/agents/`，Skill 位于 `.agents/skills/`。只按任务需要选择角色，不得一次召集全部角色。
+- 自定义 Agent 位于 `.codex/agents/`，Skill 位于 `.agents/skills/`。未显式点名 Skill 时由 `game-studio-router` 从索引选择最窄流程；只按任务需要选择角色，不得一次加载全部 Skill 或召集全部角色。
 - 子代理最多 4 个线程、深度 1；只读且互斥的分析可并行，写入默认由主 Agent 单线程完成。子代理不得继续创建子代理。
 
 ## 工作流

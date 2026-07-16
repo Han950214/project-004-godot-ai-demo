@@ -14,4 +14,4 @@
 | .claude/rules/test-standards.md | tests/** | tests/AGENTS.md | converted | 由 Claude 路径规则改为 Codex 最近层级 AGENTS.md。 |
 | .claude/rules/ui-code.md | src/ui/** | src/ui/AGENTS.md | converted | 由 Claude 路径规则改为 Codex 最近层级 AGENTS.md。 |
 
-Shell deny 配置另迁移为 `.codex/rules/game-studio-safety.rules`；共 1 个 command rules 文件。
+Shell deny 配置另迁移为 `.codex/rules/game-studio-safety.rules`；共 1 个 command rules 文件。Rules 与 Hooks 都是辅助护栏，不能替代任务边界、Codex 沙箱、审批和权限系统。

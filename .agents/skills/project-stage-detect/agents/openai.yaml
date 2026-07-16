@@ -4,4 +4,4 @@ interface:
   default_prompt: "使用 $project-stage-detect 完成当前明确范围内的工作。"
 
 policy:
-  allow_implicit_invocation: true
+  allow_implicit_invocation: false
