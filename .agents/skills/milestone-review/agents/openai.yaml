@@ -1,0 +1,7 @@
+interface:
+  display_name: "milestone-review"
+  short_description: "Generates a comprehensive milestone progress review including feature completeness, quality metrics, risk assessment, and go/no-go recommendation. Use at milestone checkpoints or w"
+  default_prompt: "使用 $milestone-review 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,7 @@
+interface:
+  display_name: "design-system"
+  short_description: "Guided, section-by-section GDD authoring for a single game system. Gathers context from existing docs, walks through each required section collaboratively, cross-references depende"
+  default_prompt: "使用 $design-system 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

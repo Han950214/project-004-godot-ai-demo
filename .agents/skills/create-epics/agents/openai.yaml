@@ -1,0 +1,7 @@
+interface:
+  display_name: "create-epics"
+  short_description: "Translate approved GDDs + architecture into epics — one epic per architectural module. Defines scope, governing ADRs, engine risk, and untraced requirements. Does NOT break into st"
+  default_prompt: "使用 $create-epics 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

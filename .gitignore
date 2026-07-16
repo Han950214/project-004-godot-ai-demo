@@ -1,0 +1,6 @@
+__pycache__/
+*.py[cod]
+.tmp-npm-cache/
+.godot/
+.env
+.env.*

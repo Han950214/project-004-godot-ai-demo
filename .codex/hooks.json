@@ -1,0 +1,115 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$(git rev-parse --show-toplevel)/.codex/hooks/game_studio_hook.py\" session-start",
+            "commandWindows": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"$root = git rev-parse --show-toplevel; & python (Join-Path $root '.codex/hooks/game_studio_hook.py') session-start\"",
+            "timeout": 30,
+            "statusMessage": "加载 Game Studio 上下文"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "^Bash$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$(git rev-parse --show-toplevel)/.codex/hooks/game_studio_hook.py\" pre-tool",
+            "commandWindows": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"$root = git rev-parse --show-toplevel; & python (Join-Path $root '.codex/hooks/game_studio_hook.py') pre-tool\"",
+            "timeout": 30,
+            "statusMessage": "执行 Game Studio 命令安全检查"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$(git rev-parse --show-toplevel)/.codex/hooks/game_studio_hook.py\" post-edit",
+            "commandWindows": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"$root = git rev-parse --show-toplevel; & python (Join-Path $root '.codex/hooks/game_studio_hook.py') post-edit\"",
+            "timeout": 30,
+            "statusMessage": "验证 Game Studio 写入"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "manual|auto",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$(git rev-parse --show-toplevel)/.codex/hooks/game_studio_hook.py\" pre-compact",
+            "commandWindows": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"$root = git rev-parse --show-toplevel; & python (Join-Path $root '.codex/hooks/game_studio_hook.py') pre-compact\"",
+            "timeout": 30,
+            "statusMessage": "记录压缩前状态"
+          }
+        ]
+      }
+    ],
+    "PostCompact": [
+      {
+        "matcher": "manual|auto",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$(git rev-parse --show-toplevel)/.codex/hooks/game_studio_hook.py\" post-compact",
+            "commandWindows": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"$root = git rev-parse --show-toplevel; & python (Join-Path $root '.codex/hooks/game_studio_hook.py') post-compact\"",
+            "timeout": 30,
+            "statusMessage": "恢复压缩后提示"
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$(git rev-parse --show-toplevel)/.codex/hooks/game_studio_hook.py\" subagent-start",
+            "commandWindows": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"$root = git rev-parse --show-toplevel; & python (Join-Path $root '.codex/hooks/game_studio_hook.py') subagent-start\"",
+            "timeout": 30,
+            "statusMessage": "注入子代理边界"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$(git rev-parse --show-toplevel)/.codex/hooks/game_studio_hook.py\" subagent-stop",
+            "commandWindows": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"$root = git rev-parse --show-toplevel; & python (Join-Path $root '.codex/hooks/game_studio_hook.py') subagent-stop\"",
+            "timeout": 30,
+            "statusMessage": "结束子代理审计"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$(git rev-parse --show-toplevel)/.codex/hooks/game_studio_hook.py\" stop",
+            "commandWindows": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"$root = git rev-parse --show-toplevel; & python (Join-Path $root '.codex/hooks/game_studio_hook.py') stop\"",
+            "timeout": 30,
+            "statusMessage": "结束 Game Studio 回合"
+          }
+        ]
+      }
+    ]
+  }
+}

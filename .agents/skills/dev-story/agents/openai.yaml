@@ -1,0 +1,7 @@
+interface:
+  display_name: "dev-story"
+  short_description: "Read a story file and implement it. Loads the full context (story, GDD requirement, ADR guidelines, control manifest), routes to the right programmer agent for the system and engin"
+  default_prompt: "使用 $dev-story 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

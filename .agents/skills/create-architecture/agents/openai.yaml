@@ -1,0 +1,7 @@
+interface:
+  display_name: "create-architecture"
+  short_description: "Guided, section-by-section authoring of the master architecture document for the game. Reads all GDDs, the systems index, existing ADRs, and the engine reference library to produce"
+  default_prompt: "使用 $create-architecture 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

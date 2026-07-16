@@ -1,0 +1,7 @@
+interface:
+  display_name: "team-level"
+  short_description: "Orchestrate level design team: level-designer + narrative-director + world-builder + art-director + systems-designer + qa-tester for complete area/level creation. 仅在用户明确要求团队协作，或任务存"
+  default_prompt: "使用 $team-level 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,7 @@
+interface:
+  display_name: "sprint-status"
+  short_description: "Fast sprint status check. Reads the current sprint plan, scans story files for status, and produces a concise progress snapshot with burndown assessment and emerging risks. Run at "
+  default_prompt: "使用 $sprint-status 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

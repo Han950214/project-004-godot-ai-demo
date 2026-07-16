@@ -1,0 +1,7 @@
+interface:
+  display_name: "brainstorm"
+  short_description: "Guided game concept ideation — from zero idea to a structured game concept document. Uses professional studio ideation techniques, player psychology frameworks, and structured crea"
+  default_prompt: "使用 $brainstorm 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

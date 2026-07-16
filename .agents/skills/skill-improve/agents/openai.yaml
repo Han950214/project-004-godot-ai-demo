@@ -1,0 +1,7 @@
+interface:
+  display_name: "skill-improve"
+  short_description: "Improve a skill using a test-fix-retest loop. Runs static checks, proposes targeted fixes, rewrites the skill, re-tests, and keeps or reverts based on score change. 当用户明确点名该流程或当前任务"
+  default_prompt: "使用 $skill-improve 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

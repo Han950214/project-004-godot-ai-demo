@@ -1,0 +1,7 @@
+interface:
+  display_name: "architecture-review"
+  short_description: "Validates completeness and consistency of the project architecture against all GDDs. Builds a traceability matrix mapping every GDD technical requirement to ADRs, identifies covera"
+  default_prompt: "使用 $architecture-review 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

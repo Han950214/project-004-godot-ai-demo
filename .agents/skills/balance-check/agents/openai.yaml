@@ -1,0 +1,7 @@
+interface:
+  display_name: "balance-check"
+  short_description: "Analyzes game balance data files, formulas, and configuration to identify outliers, broken progressions, degenerate strategies, and economy imbalances. Use after modifying any bala"
+  default_prompt: "使用 $balance-check 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

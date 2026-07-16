@@ -1,0 +1,7 @@
+interface:
+  display_name: "test-helpers"
+  short_description: "Generate engine-specific test helper libraries for the project's test suite. Reads existing test patterns and produces tests/helpers/ with assertion utilities, factory functions, a"
+  default_prompt: "使用 $test-helpers 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

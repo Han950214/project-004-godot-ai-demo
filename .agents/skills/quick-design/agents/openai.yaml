@@ -1,0 +1,7 @@
+interface:
+  display_name: "quick-design"
+  short_description: "Lightweight design spec for small changes — tuning adjustments, minor mechanics, balance tweaks. Skips full GDD authoring when a system GDD already exists or the change is too smal"
+  default_prompt: "使用 $quick-design 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

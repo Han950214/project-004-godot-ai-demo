@@ -1,0 +1,7 @@
+interface:
+  display_name: "localize"
+  short_description: "Full localization pipeline: scan for hardcoded strings, extract and manage string tables, validate translations, generate translator briefings, run cultural/sensitivity review, man"
+  default_prompt: "使用 $localize 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

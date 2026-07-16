@@ -1,0 +1,7 @@
+interface:
+  display_name: "patch-notes"
+  short_description: "Generate player-facing patch notes from git history, sprint data, and internal changelogs. Translates developer language into clear, engaging player communication. 当用户明确点名该流程或当前任务与"
+  default_prompt: "使用 $patch-notes 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,7 @@
+interface:
+  display_name: "architecture-decision"
+  short_description: "Creates an Architecture Decision Record (ADR) documenting a significant technical decision, its context, alternatives considered, and consequences. Every major technical choice sho"
+  default_prompt: "使用 $architecture-decision 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

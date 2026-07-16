@@ -1,0 +1,7 @@
+interface:
+  display_name: "art-bible"
+  short_description: "Guided, section-by-section Art Bible authoring. Creates the visual identity specification that gates all asset production. Run after $brainstorm is approved and before $map-systems"
+  default_prompt: "使用 $art-bible 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

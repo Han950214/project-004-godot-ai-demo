@@ -1,0 +1,7 @@
+interface:
+  display_name: "team-audio"
+  short_description: "Orchestrate audio team: audio-director + sound-designer + technical-artist + gameplay-programmer for full audio pipeline from direction to implementation. 仅在用户明确要求团队协作，或任务存在互斥且可独立并"
+  default_prompt: "使用 $team-audio 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

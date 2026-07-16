@@ -1,0 +1,7 @@
+interface:
+  display_name: "propagate-design-change"
+  short_description: "When a GDD is revised, scans all ADRs and the traceability index to identify which architectural decisions are now potentially stale. Produces a change impact report and guides the"
+  default_prompt: "使用 $propagate-design-change 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

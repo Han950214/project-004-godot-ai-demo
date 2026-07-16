@@ -1,0 +1,7 @@
+interface:
+  display_name: "team-combat"
+  short_description: "Orchestrate the combat team: coordinates game-designer, gameplay-programmer, ai-programmer, technical-artist, sound-designer, and qa-tester to design, implement, and validate a com"
+  default_prompt: "使用 $team-combat 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,7 @@
+interface:
+  display_name: "help"
+  short_description: "Analyzes what is done and the users query and offers advice on what to do next. Use if user says what should I do next or what do I do now or I'm stuck or I don't know what to do 当"
+  default_prompt: "使用 $help 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

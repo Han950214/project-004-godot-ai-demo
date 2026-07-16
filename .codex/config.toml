@@ -1,0 +1,17 @@
+
+[agents]
+max_threads = 4
+max_depth = 1
+
+[features]
+hooks = true
+
+[mcp_servers.godot]
+command = "npx"
+args = ["-y", "@coding-solo/godot-mcp@0.1.1"]
+cwd = 'E:\Workspace\projects\game\project_004_godot_ai_demo'
+startup_timeout_sec = 30
+tool_timeout_sec = 120
+enabled = false
+required = false
+default_tools_approval_mode = "writes"

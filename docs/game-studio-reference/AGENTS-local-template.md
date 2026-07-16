@@ -1,0 +1,37 @@
+# AGENTS.md Template
+
+Copy this file to the project root as `AGENTS.md` for personal overrides.
+This file is gitignored and will not be committed.
+
+```markdown
+# Personal Preferences
+
+## Model Preferences
+- Prefer Opus for complex design tasks
+- Use Haiku for quick lookups and simple edits
+
+## Workflow Preferences
+- Always run tests after code changes
+- Compact context proactively at 60% usage
+- Use /clear between unrelated tasks
+
+## Local Environment
+- Python command: python (or py / python3)
+- Shell: Git shell on Windows
+- IDE: VS Code with Codex extension
+
+## Communication Style
+- Keep responses concise
+- Show file paths in all code references
+- Explain architectural decisions briefly
+
+## Personal Shortcuts
+- When I say "review", run $code-review on the last changed files
+- When I say "status", show git status + sprint progress
+```
+
+## Setup
+
+1. Copy this template to your project root: `cp docs/game-studio-reference/AGENTS-local-template.md AGENTS.md`
+2. Edit to match your preferences
+3. Verify `AGENTS.md` is in `.gitignore` (Codex reads it from the project root)

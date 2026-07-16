@@ -1,0 +1,7 @@
+interface:
+  display_name: "team-live-ops"
+  short_description: "Orchestrate the live-ops team for post-launch content planning: coordinates live-ops-designer, economy-designer, analytics-engineer, community-manager, writer, and narrative-direct"
+  default_prompt: "使用 $team-live-ops 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

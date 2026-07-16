@@ -1,0 +1,7 @@
+interface:
+  display_name: "prototype"
+  short_description: "Concept prototype — validate the core idea is worth designing before writing GDDs. Run right after $brainstorm and $setup-engine. Routes to HTML, Engine, or Paper path based on gam"
+  default_prompt: "使用 $prototype 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

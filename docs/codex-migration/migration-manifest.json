@@ -1,0 +1,1653 @@
+{
+  "upstream": {
+    "repository": "https://github.com/Donchitos/Claude-Code-Game-Studios.git",
+    "tag": "v1.0.0",
+    "commit": "984023ddac0d5e27624f2baacde6105e45de375f"
+  },
+  "agents": [
+    {
+      "source_agent": ".claude/agents/accessibility-specialist.md",
+      "target_toml": ".codex/agents/accessibility-specialist.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/ai-programmer.md",
+      "target_toml": ".codex/agents/ai-programmer.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/analytics-engineer.md",
+      "target_toml": ".codex/agents/analytics-engineer.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/art-director.md",
+      "target_toml": ".codex/agents/art-director.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/audio-director.md",
+      "target_toml": ".codex/agents/audio-director.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/community-manager.md",
+      "target_toml": ".codex/agents/community-manager.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/creative-director.md",
+      "target_toml": ".codex/agents/creative-director.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/devops-engineer.md",
+      "target_toml": ".codex/agents/devops-engineer.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/economy-designer.md",
+      "target_toml": ".codex/agents/economy-designer.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/engine-programmer.md",
+      "target_toml": ".codex/agents/engine-programmer.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/game-designer.md",
+      "target_toml": ".codex/agents/game-designer.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/gameplay-programmer.md",
+      "target_toml": ".codex/agents/gameplay-programmer.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/godot-csharp-specialist.md",
+      "target_toml": ".codex/agents/godot-csharp-specialist.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/godot-gdextension-specialist.md",
+      "target_toml": ".codex/agents/godot-gdextension-specialist.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/godot-gdscript-specialist.md",
+      "target_toml": ".codex/agents/godot-gdscript-specialist.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/godot-shader-specialist.md",
+      "target_toml": ".codex/agents/godot-shader-specialist.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/godot-specialist.md",
+      "target_toml": ".codex/agents/godot-specialist.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/lead-programmer.md",
+      "target_toml": ".codex/agents/lead-programmer.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/level-designer.md",
+      "target_toml": ".codex/agents/level-designer.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/live-ops-designer.md",
+      "target_toml": ".codex/agents/live-ops-designer.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/localization-lead.md",
+      "target_toml": ".codex/agents/localization-lead.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/narrative-director.md",
+      "target_toml": ".codex/agents/narrative-director.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/network-programmer.md",
+      "target_toml": ".codex/agents/network-programmer.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/performance-analyst.md",
+      "target_toml": ".codex/agents/performance-analyst.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/producer.md",
+      "target_toml": ".codex/agents/producer.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/prototyper.md",
+      "target_toml": ".codex/agents/prototyper.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/qa-lead.md",
+      "target_toml": ".codex/agents/qa-lead.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/qa-tester.md",
+      "target_toml": ".codex/agents/qa-tester.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/release-manager.md",
+      "target_toml": ".codex/agents/release-manager.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/security-engineer.md",
+      "target_toml": ".codex/agents/security-engineer.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/sound-designer.md",
+      "target_toml": ".codex/agents/sound-designer.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/systems-designer.md",
+      "target_toml": ".codex/agents/systems-designer.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/technical-artist.md",
+      "target_toml": ".codex/agents/technical-artist.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/technical-director.md",
+      "target_toml": ".codex/agents/technical-director.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/tools-programmer.md",
+      "target_toml": ".codex/agents/tools-programmer.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/ue-blueprint-specialist.md",
+      "target_toml": ".codex/agents/ue-blueprint-specialist.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/ue-gas-specialist.md",
+      "target_toml": ".codex/agents/ue-gas-specialist.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/ue-replication-specialist.md",
+      "target_toml": ".codex/agents/ue-replication-specialist.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/ue-umg-specialist.md",
+      "target_toml": ".codex/agents/ue-umg-specialist.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/ui-programmer.md",
+      "target_toml": ".codex/agents/ui-programmer.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/unity-addressables-specialist.md",
+      "target_toml": ".codex/agents/unity-addressables-specialist.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/unity-dots-specialist.md",
+      "target_toml": ".codex/agents/unity-dots-specialist.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/unity-shader-specialist.md",
+      "target_toml": ".codex/agents/unity-shader-specialist.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/unity-specialist.md",
+      "target_toml": ".codex/agents/unity-specialist.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/unity-ui-specialist.md",
+      "target_toml": ".codex/agents/unity-ui-specialist.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/unreal-specialist.md",
+      "target_toml": ".codex/agents/unreal-specialist.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/ux-designer.md",
+      "target_toml": ".codex/agents/ux-designer.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/world-builder.md",
+      "target_toml": ".codex/agents/world-builder.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    },
+    {
+      "source_agent": ".claude/agents/writer.md",
+      "target_toml": ".codex/agents/writer.toml",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "tools",
+        "model",
+        "maxTurns"
+      ],
+      "behavior_differences": "继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。"
+    }
+  ],
+  "skills": [
+    {
+      "source_skill": ".claude/skills/adopt/SKILL.md",
+      "target_skill": ".agents/skills/adopt/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/architecture-decision/SKILL.md",
+      "target_skill": ".agents/skills/architecture-decision/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/architecture-review/SKILL.md",
+      "target_skill": ".agents/skills/architecture-review/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/art-bible/SKILL.md",
+      "target_skill": ".agents/skills/art-bible/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/asset-audit/SKILL.md",
+      "target_skill": ".agents/skills/asset-audit/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/asset-spec/SKILL.md",
+      "target_skill": ".agents/skills/asset-spec/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/balance-check/SKILL.md",
+      "target_skill": ".agents/skills/balance-check/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/brainstorm/SKILL.md",
+      "target_skill": ".agents/skills/brainstorm/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/bug-report/SKILL.md",
+      "target_skill": ".agents/skills/bug-report/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/bug-triage/SKILL.md",
+      "target_skill": ".agents/skills/bug-triage/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/changelog/SKILL.md",
+      "target_skill": ".agents/skills/changelog/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/code-review/SKILL.md",
+      "target_skill": ".agents/skills/code-review/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/consistency-check/SKILL.md",
+      "target_skill": ".agents/skills/consistency-check/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/content-audit/SKILL.md",
+      "target_skill": ".agents/skills/content-audit/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/create-architecture/SKILL.md",
+      "target_skill": ".agents/skills/create-architecture/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/create-control-manifest/SKILL.md",
+      "target_skill": ".agents/skills/create-control-manifest/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/create-epics/SKILL.md",
+      "target_skill": ".agents/skills/create-epics/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/create-stories/SKILL.md",
+      "target_skill": ".agents/skills/create-stories/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/day-one-patch/SKILL.md",
+      "target_skill": ".agents/skills/day-one-patch/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/design-review/SKILL.md",
+      "target_skill": ".agents/skills/design-review/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/design-system/SKILL.md",
+      "target_skill": ".agents/skills/design-system/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/dev-story/SKILL.md",
+      "target_skill": ".agents/skills/dev-story/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/estimate/SKILL.md",
+      "target_skill": ".agents/skills/estimate/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/gate-check/SKILL.md",
+      "target_skill": ".agents/skills/gate-check/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/help/SKILL.md",
+      "target_skill": ".agents/skills/help/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/hotfix/SKILL.md",
+      "target_skill": ".agents/skills/hotfix/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/launch-checklist/SKILL.md",
+      "target_skill": ".agents/skills/launch-checklist/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/localize/SKILL.md",
+      "target_skill": ".agents/skills/localize/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/map-systems/SKILL.md",
+      "target_skill": ".agents/skills/map-systems/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/milestone-review/SKILL.md",
+      "target_skill": ".agents/skills/milestone-review/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/onboard/SKILL.md",
+      "target_skill": ".agents/skills/onboard/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/patch-notes/SKILL.md",
+      "target_skill": ".agents/skills/patch-notes/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/perf-profile/SKILL.md",
+      "target_skill": ".agents/skills/perf-profile/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/playtest-report/SKILL.md",
+      "target_skill": ".agents/skills/playtest-report/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/project-stage-detect/SKILL.md",
+      "target_skill": ".agents/skills/project-stage-detect/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/propagate-design-change/SKILL.md",
+      "target_skill": ".agents/skills/propagate-design-change/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/prototype/SKILL.md",
+      "target_skill": ".agents/skills/prototype/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/qa-plan/SKILL.md",
+      "target_skill": ".agents/skills/qa-plan/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/quick-design/SKILL.md",
+      "target_skill": ".agents/skills/quick-design/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/regression-suite/SKILL.md",
+      "target_skill": ".agents/skills/regression-suite/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/release-checklist/SKILL.md",
+      "target_skill": ".agents/skills/release-checklist/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/retrospective/SKILL.md",
+      "target_skill": ".agents/skills/retrospective/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/reverse-document/SKILL.md",
+      "target_skill": ".agents/skills/reverse-document/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/review-all-gdds/SKILL.md",
+      "target_skill": ".agents/skills/review-all-gdds/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/scope-check/SKILL.md",
+      "target_skill": ".agents/skills/scope-check/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/security-audit/SKILL.md",
+      "target_skill": ".agents/skills/security-audit/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/setup-engine/SKILL.md",
+      "target_skill": ".agents/skills/setup-engine/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/skill-improve/SKILL.md",
+      "target_skill": ".agents/skills/skill-improve/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/skill-test/SKILL.md",
+      "target_skill": ".agents/skills/skill-test/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/smoke-check/SKILL.md",
+      "target_skill": ".agents/skills/smoke-check/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/soak-test/SKILL.md",
+      "target_skill": ".agents/skills/soak-test/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/sprint-plan/SKILL.md",
+      "target_skill": ".agents/skills/sprint-plan/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/sprint-status/SKILL.md",
+      "target_skill": ".agents/skills/sprint-status/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/start/SKILL.md",
+      "target_skill": ".agents/skills/start/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/story-done/SKILL.md",
+      "target_skill": ".agents/skills/story-done/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/story-readiness/SKILL.md",
+      "target_skill": ".agents/skills/story-readiness/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/team-audio/SKILL.md",
+      "target_skill": ".agents/skills/team-audio/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/team-combat/SKILL.md",
+      "target_skill": ".agents/skills/team-combat/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/team-level/SKILL.md",
+      "target_skill": ".agents/skills/team-level/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/team-live-ops/SKILL.md",
+      "target_skill": ".agents/skills/team-live-ops/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/team-narrative/SKILL.md",
+      "target_skill": ".agents/skills/team-narrative/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/team-polish/SKILL.md",
+      "target_skill": ".agents/skills/team-polish/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/team-qa/SKILL.md",
+      "target_skill": ".agents/skills/team-qa/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/team-release/SKILL.md",
+      "target_skill": ".agents/skills/team-release/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/team-ui/SKILL.md",
+      "target_skill": ".agents/skills/team-ui/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/tech-debt/SKILL.md",
+      "target_skill": ".agents/skills/tech-debt/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/test-evidence-review/SKILL.md",
+      "target_skill": ".agents/skills/test-evidence-review/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/test-flakiness/SKILL.md",
+      "target_skill": ".agents/skills/test-flakiness/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/test-helpers/SKILL.md",
+      "target_skill": ".agents/skills/test-helpers/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/test-setup/SKILL.md",
+      "target_skill": ".agents/skills/test-setup/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/ux-design/SKILL.md",
+      "target_skill": ".agents/skills/ux-design/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/ux-review/SKILL.md",
+      "target_skill": ".agents/skills/ux-review/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    },
+    {
+      "source_skill": ".claude/skills/vertical-slice/SKILL.md",
+      "target_skill": ".agents/skills/vertical-slice/SKILL.md",
+      "status": "converted",
+      "claude_specific_fields_removed": [
+        "allowed-tools",
+        "model",
+        "user-invocable",
+        "argument-hint"
+      ],
+      "behavior_differences": "支持显式 $skill 与窄条件隐式调用；团队 Skill 限制为最多 3 个单层子代理。"
+    }
+  ],
+  "rules": [
+    {
+      "source_rule": ".claude/rules/ai-code.md",
+      "source_paths": [
+        "src/ai/**"
+      ],
+      "target_agents_md": [
+        "src/ai/AGENTS.md"
+      ],
+      "status": "converted",
+      "behavior_differences": "由 Claude 路径规则改为 Codex 最近层级 AGENTS.md。"
+    },
+    {
+      "source_rule": ".claude/rules/data-files.md",
+      "source_paths": [
+        "assets/data/**"
+      ],
+      "target_agents_md": [
+        "assets/data/AGENTS.md"
+      ],
+      "status": "converted",
+      "behavior_differences": "由 Claude 路径规则改为 Codex 最近层级 AGENTS.md。"
+    },
+    {
+      "source_rule": ".claude/rules/design-docs.md",
+      "source_paths": [
+        "design/gdd/**"
+      ],
+      "target_agents_md": [
+        "design/gdd/AGENTS.md"
+      ],
+      "status": "converted",
+      "behavior_differences": "由 Claude 路径规则改为 Codex 最近层级 AGENTS.md。"
+    },
+    {
+      "source_rule": ".claude/rules/engine-code.md",
+      "source_paths": [
+        "src/core/**"
+      ],
+      "target_agents_md": [
+        "src/core/AGENTS.md"
+      ],
+      "status": "converted",
+      "behavior_differences": "由 Claude 路径规则改为 Codex 最近层级 AGENTS.md。"
+    },
+    {
+      "source_rule": ".claude/rules/gameplay-code.md",
+      "source_paths": [
+        "src/gameplay/**"
+      ],
+      "target_agents_md": [
+        "src/gameplay/AGENTS.md"
+      ],
+      "status": "converted",
+      "behavior_differences": "由 Claude 路径规则改为 Codex 最近层级 AGENTS.md。"
+    },
+    {
+      "source_rule": ".claude/rules/narrative.md",
+      "source_paths": [
+        "design/narrative/**"
+      ],
+      "target_agents_md": [
+        "design/narrative/AGENTS.md"
+      ],
+      "status": "converted",
+      "behavior_differences": "由 Claude 路径规则改为 Codex 最近层级 AGENTS.md。"
+    },
+    {
+      "source_rule": ".claude/rules/network-code.md",
+      "source_paths": [
+        "src/networking/**"
+      ],
+      "target_agents_md": [
+        "src/networking/AGENTS.md"
+      ],
+      "status": "converted",
+      "behavior_differences": "由 Claude 路径规则改为 Codex 最近层级 AGENTS.md。"
+    },
+    {
+      "source_rule": ".claude/rules/prototype-code.md",
+      "source_paths": [
+        "prototypes/**"
+      ],
+      "target_agents_md": [
+        "prototypes/AGENTS.md"
+      ],
+      "status": "converted",
+      "behavior_differences": "由 Claude 路径规则改为 Codex 最近层级 AGENTS.md。"
+    },
+    {
+      "source_rule": ".claude/rules/shader-code.md",
+      "source_paths": [
+        "assets/shaders/**"
+      ],
+      "target_agents_md": [
+        "assets/shaders/AGENTS.md"
+      ],
+      "status": "converted",
+      "behavior_differences": "由 Claude 路径规则改为 Codex 最近层级 AGENTS.md。"
+    },
+    {
+      "source_rule": ".claude/rules/test-standards.md",
+      "source_paths": [
+        "tests/**"
+      ],
+      "target_agents_md": [
+        "tests/AGENTS.md"
+      ],
+      "status": "converted",
+      "behavior_differences": "由 Claude 路径规则改为 Codex 最近层级 AGENTS.md。"
+    },
+    {
+      "source_rule": ".claude/rules/ui-code.md",
+      "source_paths": [
+        "src/ui/**"
+      ],
+      "target_agents_md": [
+        "src/ui/AGENTS.md"
+      ],
+      "status": "converted",
+      "behavior_differences": "由 Claude 路径规则改为 Codex 最近层级 AGENTS.md。"
+    }
+  ],
+  "hooks": [
+    {
+      "source_hook": "detect-gaps.sh",
+      "source_event": "SessionStart",
+      "target_event": "SessionStart",
+      "status": "adapted",
+      "target_script": ".codex/hooks/game_studio_hook.py session-start",
+      "behavior_difference": "只提供缺口提示，不写状态文件。"
+    },
+    {
+      "source_hook": "log-agent-stop.sh",
+      "source_event": "SubagentStop",
+      "target_event": "SubagentStop",
+      "status": "adapted",
+      "target_script": ".codex/hooks/game_studio_hook.py subagent-stop",
+      "behavior_difference": "不持久化会话日志，避免隐式仓库写入。"
+    },
+    {
+      "source_hook": "log-agent.sh",
+      "source_event": "SubagentStart",
+      "target_event": "SubagentStart",
+      "status": "adapted",
+      "target_script": ".codex/hooks/game_studio_hook.py subagent-start",
+      "behavior_difference": "改为注入单层委派边界。"
+    },
+    {
+      "source_hook": "notify.sh",
+      "source_event": "Notification",
+      "target_event": "none",
+      "status": "unsupported",
+      "target_script": "",
+      "behavior_difference": "当前 Codex command Hook 事件列表无 Notification；不启用 Windows toast。"
+    },
+    {
+      "source_hook": "post-compact.sh",
+      "source_event": "PostCompact",
+      "target_event": "PostCompact",
+      "status": "adapted",
+      "target_script": ".codex/hooks/game_studio_hook.py post-compact",
+      "behavior_difference": "输出恢复提示，不依赖 Claude 状态文件。"
+    },
+    {
+      "source_hook": "pre-compact.sh",
+      "source_event": "PreCompact",
+      "target_event": "PreCompact",
+      "status": "adapted",
+      "target_script": ".codex/hooks/game_studio_hook.py pre-compact",
+      "behavior_difference": "只读汇总 git 状态，不写 production/session-state。"
+    },
+    {
+      "source_hook": "session-start.sh",
+      "source_event": "SessionStart",
+      "target_event": "SessionStart",
+      "status": "converted",
+      "target_script": ".codex/hooks/game_studio_hook.py session-start",
+      "behavior_difference": "使用 Codex additionalContext。"
+    },
+    {
+      "source_hook": "session-stop.sh",
+      "source_event": "Stop",
+      "target_event": "Stop",
+      "status": "adapted",
+      "target_script": ".codex/hooks/game_studio_hook.py stop",
+      "behavior_difference": "返回合法空 JSON，不自动写会话日志。"
+    },
+    {
+      "source_hook": "validate-assets.sh",
+      "source_event": "PostToolUse",
+      "target_event": "PostToolUse",
+      "status": "converted",
+      "target_script": ".codex/hooks/game_studio_hook.py post-edit",
+      "behavior_difference": "Python 标准库验证变更 JSON。"
+    },
+    {
+      "source_hook": "validate-commit.sh",
+      "source_event": "PreToolUse",
+      "target_event": "PreToolUse",
+      "status": "converted",
+      "target_script": ".codex/hooks/game_studio_hook.py pre-tool",
+      "behavior_difference": "只在 git commit 时验证暂存 JSON。"
+    },
+    {
+      "source_hook": "validate-push.sh",
+      "source_event": "PreToolUse",
+      "target_event": "PreToolUse",
+      "status": "converted",
+      "target_script": ".codex/hooks/game_studio_hook.py pre-tool",
+      "behavior_difference": "使用 permissionDecision=deny 明确拒绝 push。"
+    },
+    {
+      "source_hook": "validate-skill-change.sh",
+      "source_event": "PostToolUse",
+      "target_event": "PostToolUse",
+      "status": "adapted",
+      "target_script": ".codex/hooks/game_studio_hook.py post-edit",
+      "behavior_difference": "校验 Codex SKILL.md frontmatter，不递归启动 Codex。"
+    }
+  ],
+  "godot_mcp": {
+    "package": "@coding-solo/godot-mcp",
+    "version": "0.1.1",
+    "enabled": false,
+    "runtime": "deferred_missing_godot"
+  }
+}

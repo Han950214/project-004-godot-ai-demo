@@ -1,0 +1,7 @@
+interface:
+  display_name: "adopt"
+  short_description: "Brownfield onboarding — audits existing project artifacts for template format compliance (not just existence), classifies gaps by impact, and produces a numbered migration plan. Ru"
+  default_prompt: "使用 $adopt 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

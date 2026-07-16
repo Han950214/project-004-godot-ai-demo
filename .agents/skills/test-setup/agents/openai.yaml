@@ -1,0 +1,7 @@
+interface:
+  display_name: "test-setup"
+  short_description: "Scaffold the test framework and CI/CD pipeline for the project's engine. Creates the tests/ directory structure, engine-specific test runner configuration, and GitHub Actions workf"
+  default_prompt: "使用 $test-setup 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

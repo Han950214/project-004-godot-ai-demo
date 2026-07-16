@@ -1,0 +1,7 @@
+interface:
+  display_name: "changelog"
+  short_description: "Auto-generates a changelog from git commits, sprint data, and design documents. Produces both internal and player-facing versions. 当用户明确点名该流程或当前任务与其专业目标直接匹配时使用；不用于无关的一般开发任务。"
+  default_prompt: "使用 $changelog 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

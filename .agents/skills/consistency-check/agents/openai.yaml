@@ -1,0 +1,7 @@
+interface:
+  display_name: "consistency-check"
+  short_description: "Scan all GDDs against the entity registry to detect cross-document inconsistencies: same entity with different stats, same item with different values, same formula with different v"
+  default_prompt: "使用 $consistency-check 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

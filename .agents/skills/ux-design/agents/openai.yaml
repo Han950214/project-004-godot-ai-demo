@@ -1,0 +1,7 @@
+interface:
+  display_name: "ux-design"
+  short_description: "Guided, section-by-section UX spec authoring for a screen, flow, or HUD. Reads game concept, player journey, and relevant GDDs to provide context-aware design guidance. Produces ux"
+  default_prompt: "使用 $ux-design 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

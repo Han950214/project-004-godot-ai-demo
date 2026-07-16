@@ -1,0 +1,7 @@
+interface:
+  display_name: "ux-review"
+  short_description: "Validates a UX spec, HUD design, or interaction pattern library for completeness, accessibility compliance, GDD alignment, and implementation readiness. Produces APPROVED / NEEDS R"
+  default_prompt: "使用 $ux-review 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

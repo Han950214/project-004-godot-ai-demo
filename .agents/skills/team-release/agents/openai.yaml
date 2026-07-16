@@ -1,0 +1,7 @@
+interface:
+  display_name: "team-release"
+  short_description: "Orchestrate the release team: coordinates release-manager, qa-lead, devops-engineer, and producer to execute a release from candidate to deployment. 仅在用户明确要求团队协作，或任务存在互斥且可独立并行的工作面时"
+  default_prompt: "使用 $team-release 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,7 @@
+interface:
+  display_name: "smoke-check"
+  short_description: "Run the critical path smoke test gate before QA hand-off. Executes the automated test suite, verifies core functionality, and produces a PASS/FAIL report. Run after a sprint's stor"
+  default_prompt: "使用 $smoke-check 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

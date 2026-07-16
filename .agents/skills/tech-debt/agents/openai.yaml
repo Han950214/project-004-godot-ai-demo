@@ -1,0 +1,7 @@
+interface:
+  display_name: "tech-debt"
+  short_description: "Track, categorize, and prioritize technical debt across the codebase. Scans for debt indicators, maintains a debt register, and recommends repayment scheduling. 当用户明确点名该流程或当前任务与其专业"
+  default_prompt: "使用 $tech-debt 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

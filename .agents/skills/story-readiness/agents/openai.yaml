@@ -1,0 +1,7 @@
+interface:
+  display_name: "story-readiness"
+  short_description: "Validate that a story file is implementation-ready. Checks for embedded GDD requirements, ADR references, engine notes, clear acceptance criteria, and no open design questions. Pro"
+  default_prompt: "使用 $story-readiness 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

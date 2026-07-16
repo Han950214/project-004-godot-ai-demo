@@ -1,0 +1,7 @@
+interface:
+  display_name: "team-polish"
+  short_description: "Orchestrate the polish team: coordinates performance-analyst, technical-artist, sound-designer, and qa-tester to optimize, polish, and harden a feature or area for release quality."
+  default_prompt: "使用 $team-polish 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

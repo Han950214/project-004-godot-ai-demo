@@ -1,0 +1,7 @@
+interface:
+  display_name: "playtest-report"
+  short_description: "Generates a structured playtest report template or analyzes existing playtest notes into a structured format. Use this to standardize playtest feedback collection and analysis. 当用户"
+  default_prompt: "使用 $playtest-report 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,7 @@
+interface:
+  display_name: "project-stage-detect"
+  short_description: "Automatically analyze project state, detect stage, identify gaps, and recommend next steps based on existing artifacts. Use when user asks 'where are we in development', 'what stag"
+  default_prompt: "使用 $project-stage-detect 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

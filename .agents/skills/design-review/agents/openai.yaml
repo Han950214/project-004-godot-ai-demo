@@ -1,0 +1,7 @@
+interface:
+  display_name: "design-review"
+  short_description: "Reviews a game design document for completeness, internal consistency, implementability, and adherence to project design standards. Run this before handing a design document to pro"
+  default_prompt: "使用 $design-review 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,7 @@
+interface:
+  display_name: "create-control-manifest"
+  short_description: "After architecture is complete, produces a flat actionable rules sheet for programmers — what you must do, what you must never do, per system and per layer. Extracted from all Acce"
+  default_prompt: "使用 $create-control-manifest 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

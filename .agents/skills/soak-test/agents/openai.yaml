@@ -1,0 +1,7 @@
+interface:
+  display_name: "soak-test"
+  short_description: "Generate a soak test protocol for extended play sessions. Defines what to observe, measure, and log during long play sessions to surface slow leaks, fatigue effects, and edge cases"
+  default_prompt: "使用 $soak-test 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

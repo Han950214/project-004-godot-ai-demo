@@ -1,0 +1,7 @@
+interface:
+  display_name: "gate-check"
+  short_description: "Validate readiness to advance between development phases. Produces a PASS/CONCERNS/FAIL verdict with specific blockers and required artifacts. Use when user says 'are we ready to m"
+  default_prompt: "使用 $gate-check 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true

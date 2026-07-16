@@ -1,0 +1,7 @@
+interface:
+  display_name: "day-one-patch"
+  short_description: "Prepare a day-one patch for a game launch. Scopes, prioritises, implements, and QA-gates a focused patch addressing known issues discovered after gold master but before or immediat"
+  default_prompt: "使用 $day-one-patch 完成当前明确范围内的工作。"
+
+policy:
+  allow_implicit_invocation: true
