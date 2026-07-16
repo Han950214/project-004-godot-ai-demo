@@ -1,0 +1,7 @@
+Godot main executable --version
+exit_code=0
+4.7.1.stable.official.a13da4feb
+
+Godot console executable --version
+exit_code=0
+4.7.1.stable.official.a13da4feb

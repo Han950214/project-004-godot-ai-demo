@@ -14,6 +14,16 @@ EXPECTED_TAG = "v1.0.0"
 EXPECTED_COMMIT = "984023ddac0d5e27624f2baacde6105e45de375f"
 EXPECTED_TREE = "45e93bee12c3f1d80052f7406f0180e9bece8382"
 EXPECTED_MCP_VERSION = "0.1.1"
+EXPECTED_GODOT_PATH = r"E:\Workspace\tools\Godot\4.7.1\Godot_v4.7.1-stable_win64.exe"
+EXPECTED_GODOT_MCP_TOOLS = (
+    "get_godot_version",
+    "list_projects",
+    "get_project_info",
+    "launch_editor",
+    "run_project",
+    "get_debug_output",
+    "stop_project",
+)
 EXPECTED_AGENTS = 49
 EXPECTED_SKILLS = 73
 EXPECTED_RULES = 11
@@ -466,10 +476,19 @@ def verify_repository(root: pathlib.Path) -> tuple[list[str], dict[str, object]]
         errors.append("missing project Godot MCP config")
     else:
         args = godot.get("args")
-        if not isinstance(args, list) or f"@coding-solo/godot-mcp@{EXPECTED_MCP_VERSION}" not in args:
+        if args != ["-y", f"@coding-solo/godot-mcp@{EXPECTED_MCP_VERSION}"]:
             errors.append("Godot MCP package is not pinned")
-        if godot.get("enabled") is not False:
-            errors.append("Godot MCP must remain disabled until Godot is installed")
+        if godot.get("enabled") is not True:
+            errors.append("Godot MCP must be enabled after portable Godot validation")
+        if godot.get("required") is not False:
+            errors.append("Godot MCP must remain optional")
+        if godot.get("default_tools_approval_mode") != "writes":
+            errors.append("Godot MCP approval mode must remain writes")
+        if godot.get("enabled_tools") != list(EXPECTED_GODOT_MCP_TOOLS):
+            errors.append("Godot MCP tool allowlist must exactly match runtime validation scope")
+        godot_env = godot.get("env")
+        if not isinstance(godot_env, dict) or godot_env.get("GODOT_PATH") != EXPECTED_GODOT_PATH:
+            errors.append("Godot MCP GODOT_PATH does not match the fixed portable executable")
 
     hooks_value = read_json(root / ".codex" / "hooks.json", errors)
     hooks = hooks_value.get("hooks") if isinstance(hooks_value, dict) else None

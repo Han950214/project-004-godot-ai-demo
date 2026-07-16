@@ -12,6 +12,19 @@ args = ["-y", "@coding-solo/godot-mcp@0.1.1"]
 cwd = 'E:\Workspace\projects\game\project_004_godot_ai_demo'
 startup_timeout_sec = 30
 tool_timeout_sec = 120
-enabled = false
+enabled = true
 required = false
 default_tools_approval_mode = "writes"
+enabled_tools = [
+  "get_godot_version",
+  "list_projects",
+  "get_project_info",
+  "launch_editor",
+  "run_project",
+  "get_debug_output",
+  "stop_project",
+]
+
+[mcp_servers.godot.env]
+GODOT_PATH = 'E:\Workspace\tools\Godot\4.7.1\Godot_v4.7.1-stable_win64.exe'
+DEBUG = "true"
