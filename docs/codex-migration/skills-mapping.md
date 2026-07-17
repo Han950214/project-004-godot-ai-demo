@@ -1,5 +1,9 @@
 # Skills 映射
 
+## Phase 2C 运行证据
+
+静态验证确认 73 个下游 Skill 与 1 个 `game-studio-router` 均具有 `SKILL.md` 和 `agents/openai.yaml`，只有 Router 允许 implicit invocation，索引精确覆盖全部下游 Skill。当前会话明确观察到 Router 加载，并完成三次自然语言路由及 `help`、`project-stage-detect`、`start`、`setup-engine`、`code-review` 五个代表性只读工作流；当前表面没有全量 Skill 注册列表接口，因此不宣称 73 个下游 Skill 已逐项运行时发现。Hook 生命周期可观察性受限不改变上述静态与代表性调用结论。完整证据见 `docs/runtime-evidence/codex-skills-agents-hooks-live-validation.md`。
+
 | source_skill | target_skill | status | claude_specific_fields_removed | behavior_differences |
 | --- | --- | --- | --- | --- |
 | .claude/skills/adopt/SKILL.md | .agents/skills/adopt/SKILL.md | converted | allowed-tools, model, user-invocable, argument-hint | 下游 Skill 关闭隐式调用；支持显式 $skill 或由 game-studio-router 定向选择；团队 Skill 最多 3 个单层子代理。 |

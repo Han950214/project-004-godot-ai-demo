@@ -15,4 +15,16 @@
 | validate-push.sh | PreToolUse | PreToolUse | converted | .codex/hooks/game_studio_hook.py pre-tool | 使用 permissionDecision=deny 明确拒绝 push。 |
 | validate-skill-change.sh | PostToolUse | PostToolUse | adapted | .codex/hooks/game_studio_hook.py post-edit | 校验 Codex SKILL.md frontmatter，不递归启动 Codex。 |
 
-运行加载验证：`deferred_codex_cli`。
+## Phase 2C 运行状态
+
+- 配置：`features.hooks = true`，八个目标事件集合与官方 matcher 形态通过静态验证。
+- 处理器：模拟输入与单元测试通过；组合 Git 命令绕过已补回归测试并修复。
+- Windows 启动：已修复 PATH 无 `python` 时原 `commandWindows` 无法启动处理器的问题；依次使用有效的 `CODEX_PYTHON`、Codex Desktop 现有捆绑 Python、PATH Python。配置命令直接调用返回合法 `SessionStart` JSON，但不计为生命周期触发。
+- `SessionStart`：用户已确认当前配置哈希受信任；当前 Desktop 表面为 `not_exposed_by_current_desktop_surface`，没有带来源标识的启动回执。
+- `PreToolUse` / `PostToolUse`：安全 Git 探针成功，但当前表面没有可区分的 Hook 回执，状态为 `not_exposed_by_current_desktop_surface`，不写成已触发。
+- `PreCompact` / `PostCompact`：`not_triggered_without_artificial_context_inflation`。
+- `SubagentStart` / `SubagentStop`：`qa-lead` 只读探针已启动并完成，但 Hook additionalContext/事件执行为 `not_exposed_by_current_desktop_surface`。
+- `Stop`：`not_observable_inside_active_task`。
+- `notify.sh`：`unsupported`，未转换、未运行。
+
+用户已确认当前非托管项目 Hook 的配置哈希受信任，`hooks_enabled=yes`。处理器模拟或配置命令直接调用不等同于 Codex 生命周期真实触发；由于当前 Desktop 表面未暴露回执，Phase 2C 以 `passed_with_surface_limitations` 收敛。证据见 `docs/runtime-evidence/codex-skills-agents-hooks-live-validation.md`。

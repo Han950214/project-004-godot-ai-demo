@@ -63,6 +63,17 @@ FORBIDDEN_GIT_COMMANDS = (
     r"git --namespace team reset --hard HEAD",
     r"git --no-pager clean -fd",
     r"git --paginate rebase main",
+    "git status; git push origin main",
+    "git status && git reset --hard HEAD",
+    "git log | git.exe clean -fd",
+    "git status;git -c advice.detachedHead=false rebase main",
+    'powershell -Command "git status; git push origin main"',
+    'cmd /c "git status && git reset --hard HEAD"',
+    "git status $(git push origin main)",
+    "(git push origin main)",
+    'Write-Output "$(git push origin main)"',
+    """bash -c 'echo "$(git push origin main)"'""",
+    "echo `git push origin main`",
 )
 SAFE_GIT_COMMANDS = (
     "git status",
@@ -70,6 +81,10 @@ SAFE_GIT_COMMANDS = (
     "git diff",
     "git log",
     'git commit -m "normal commit"',
+    'git commit -m "document git push; keep local"',
+    'git commit -m "document powershell -Command (git push)"',
+    "Write-Output '$(git push origin main)'",
+    "git commit -m 'document $(git push)'",
     "git --no-pager status",
 )
 

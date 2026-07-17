@@ -87,15 +87,138 @@ def parse_git_operation(command: str) -> tuple[str, list[str]] | None:
     return args[index].lower(), args[index + 1 :]
 
 
-def detect_forbidden_git_operation(command: str) -> str | None:
-    parsed = parse_git_operation(command)
-    if parsed is None:
-        return None
-    subcommand, args = parsed
-    if subcommand in {"push", "reset", "clean", "rebase"}:
-        return f"本项目禁止 git {subcommand}。"
-    if subcommand == "commit" and any(arg == "--amend" or arg.startswith("--amend=") for arg in args):
-        return "本项目禁止 git commit --amend。"
+def split_shell_segments(command: str) -> list[str]:
+    segments: list[str] = []
+    current: list[str] = []
+    quote: str | None = None
+    escaped = False
+    for character in command:
+        if escaped:
+            current.append(character)
+            escaped = False
+            continue
+        if character in {"\\", "`"}:
+            current.append(character)
+            escaped = True
+            continue
+        if quote is not None:
+            current.append(character)
+            if character == quote:
+                quote = None
+            continue
+        if character in {"'", '"'}:
+            current.append(character)
+            quote = character
+            continue
+        if character in {";", "&", "|", "\r", "\n"}:
+            segment = "".join(current).strip()
+            if segment:
+                segments.append(segment)
+            current = []
+            continue
+        current.append(character)
+    segment = "".join(current).strip()
+    if segment:
+        segments.append(segment)
+    return segments
+
+
+def nested_shell_commands(command: str) -> list[str]:
+    nested: list[str] = []
+    try:
+        tokens = [token.strip('"\'') for token in shlex.split(command, posix=False)]
+    except ValueError:
+        tokens = []
+    wrappers = {
+        "powershell": {"-command", "-c"},
+        "powershell.exe": {"-command", "-c"},
+        "pwsh": {"-command", "-c"},
+        "pwsh.exe": {"-command", "-c"},
+        "cmd": {"/c", "/k"},
+        "cmd.exe": {"/c", "/k"},
+        "bash": {"-c", "-lc"},
+        "bash.exe": {"-c", "-lc"},
+        "sh": {"-c"},
+        "sh.exe": {"-c"},
+    }
+    for index, token in enumerate(tokens):
+        executable = token.replace("/", "\\").rsplit("\\", 1)[-1].lower()
+        options = wrappers.get(executable)
+        if options is None:
+            continue
+        for option_index in range(index + 1, len(tokens) - 1):
+            if tokens[option_index].lower() in options:
+                nested.append(tokens[option_index + 1])
+                break
+
+    visible = list(command)
+    in_single_quote = False
+    escaped = False
+    for index, character in enumerate(command):
+        if escaped:
+            if in_single_quote:
+                visible[index] = " "
+            escaped = False
+            continue
+        if character == "\\":
+            if in_single_quote:
+                visible[index] = " "
+            escaped = True
+            continue
+        if character == "'":
+            visible[index] = " "
+            in_single_quote = not in_single_quote
+            continue
+        if in_single_quote:
+            visible[index] = " "
+    executable_text = "".join(visible)
+    nested.extend(match.group(1) for match in re.finditer(r"\$\(([^()]*)\)", executable_text))
+    nested.extend(match.group(1) for match in re.finditer(r"`([^`]*)`", executable_text))
+
+    quote: str | None = None
+    escaped = False
+    stack: list[int] = []
+    for index, character in enumerate(command):
+        if escaped:
+            escaped = False
+            continue
+        if character in {"\\", "`"}:
+            escaped = True
+            continue
+        if quote is not None:
+            if character == quote:
+                quote = None
+            continue
+        if character in {"'", '"'}:
+            quote = character
+            continue
+        if character == "(":
+            stack.append(index + 1)
+            continue
+        if character == ")" and stack:
+            start = stack.pop()
+            value = command[start:index].strip()
+            if value:
+                nested.append(value)
+    return nested
+
+
+def detect_forbidden_git_operation(command: str, depth: int = 0) -> str | None:
+    if depth > 8:
+        return "命令嵌套过深，无法安全验证 Git 操作。"
+    for segment in split_shell_segments(command):
+        parsed = parse_git_operation(segment)
+        if parsed is None:
+            continue
+        subcommand, args = parsed
+        if subcommand in {"push", "reset", "clean", "rebase"}:
+            return f"本项目禁止 git {subcommand}。"
+        if subcommand == "commit" and any(arg == "--amend" or arg.startswith("--amend=") for arg in args):
+            return "本项目禁止 git commit --amend。"
+    for nested in nested_shell_commands(command):
+        forbidden = detect_forbidden_git_operation(nested, depth + 1)
+        if forbidden:
+            return forbidden
     return None
 
 

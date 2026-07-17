@@ -13,6 +13,7 @@ import unittest
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 MODULE_PATH = ROOT / "tools" / "verify_codex_migration.py"
+BUILD_PATH = ROOT / "tools" / "build_codex_adaptation.py"
 HOOK_PATH = ROOT / ".codex" / "hooks" / "game_studio_hook.py"
 SNAPSHOT = ROOT / "upstream" / "claude-code-game-studios-v1.0.0"
 SOURCE_MANIFEST = ROOT / "upstream" / "SOURCE-MANIFEST.json"
@@ -29,6 +30,10 @@ def load_module(path: pathlib.Path, name: str):
 
 def load_verifier():
     return load_module(MODULE_PATH, "verify_codex_migration")
+
+
+def load_builder():
+    return load_module(BUILD_PATH, "build_codex_adaptation")
 
 
 def load_hook():
@@ -125,6 +130,25 @@ class VerifyCodexMigrationTests(unittest.TestCase):
             with self.subTest(command=command):
                 self.assertIsNotNone(hook.detect_forbidden_git_operation(command))
 
+    def test_forbidden_git_operation_after_safe_command_is_detected(self) -> None:
+        hook = load_hook()
+        commands = (
+            "git status; git push origin main",
+            "git status && git reset --hard HEAD",
+            "git log | git.exe clean -fd",
+            "git status;git -c advice.detachedHead=false rebase main",
+            'powershell -Command "git status; git push origin main"',
+            'cmd /c "git status && git reset --hard HEAD"',
+            "git status $(git push origin main)",
+            "(git push origin main)",
+            'Write-Output "$(git push origin main)"',
+            """bash -c 'echo "$(git push origin main)"'""",
+            "echo `git push origin main`",
+        )
+        for command in commands:
+            with self.subTest(command=command):
+                self.assertIsNotNone(hook.detect_forbidden_git_operation(command))
+
     def test_safe_git_variants_are_allowed(self) -> None:
         hook = load_hook()
         commands = (
@@ -133,11 +157,57 @@ class VerifyCodexMigrationTests(unittest.TestCase):
             "git diff",
             "git log",
             'git commit -m "normal commit"',
+            'git commit -m "document git push; keep local"',
+            'git commit -m "document powershell -Command (git push)"',
+            "Write-Output '$(git push origin main)'",
+            "git commit -m 'document $(git push)'",
             "git --no-pager status",
         )
         for command in commands:
             with self.subTest(command=command):
                 self.assertIsNone(hook.detect_forbidden_git_operation(command))
+
+    def test_generated_hook_matches_build_source(self) -> None:
+        builder = load_builder()
+        generated = builder.HOOK_SCRIPT.replace("\r\n", "\n").rstrip()
+        checked_in = HOOK_PATH.read_text(encoding="utf-8").replace("\r\n", "\n").rstrip()
+        self.assertEqual(generated, checked_in)
+
+    def test_generated_hook_configuration_matches_build_source(self) -> None:
+        builder = load_builder()
+        checked_in = json.loads((ROOT / ".codex" / "hooks.json").read_text(encoding="utf-8"))
+        self.assertEqual(builder.hook_configuration(), checked_in)
+
+    @unittest.skipUnless(os.name == "nt", "Windows Hook command")
+    def test_windows_hook_command_runs_without_python_on_path(self) -> None:
+        builder = load_builder()
+        command = str(builder.hook_handler("session-start", "test")["commandWindows"])
+        git = shutil.which("git")
+        self.assertIsNotNone(git)
+        windows = pathlib.Path(os.environ["SystemRoot"])
+        env = os.environ.copy()
+        env["CODEX_PYTHON"] = sys.executable
+        env["PATH"] = os.pathsep.join(
+            (
+                str(pathlib.Path(str(git)).parent),
+                str(windows / "System32" / "WindowsPowerShell" / "v1.0"),
+                str(windows / "System32"),
+                str(windows),
+            )
+        )
+        result = subprocess.run(
+            command,
+            cwd=ROOT,
+            input=json.dumps({"cwd": str(ROOT), "hook_event_name": "SessionStart"}),
+            text=True,
+            encoding="utf-8",
+            capture_output=True,
+            shell=True,
+            env=env,
+        )
+        self.assertEqual(0, result.returncode, result.stderr)
+        output = json.loads(result.stdout)
+        self.assertEqual("SessionStart", output["hookSpecificOutput"]["hookEventName"])
 
     def test_router_is_only_implicit_skill_and_index_is_complete(self) -> None:
         verifier = load_verifier()

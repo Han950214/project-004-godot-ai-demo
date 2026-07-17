@@ -1,5 +1,9 @@
 # Agents 映射
 
+## Phase 2C 运行证据
+
+静态验证确认 49 个 `.codex/agents/*.toml` 可解析、名称唯一，且 `description` 与 `developer_instructions` 非空。当前子代理接口已代表性调用 `godot-specialist`、`qa-lead`、`producer`，三个只读任务均完成；本次另以一个只读 `qa-lead` 探针确认没有 Demo 产品范围改动。这不等于逐个运行 49 个 Agent。`SubagentStart`/`SubagentStop` 的项目 Hook 注入在当前表面不可观察，状态为 `not_exposed_by_current_desktop_surface`。完整证据见 `docs/runtime-evidence/codex-skills-agents-hooks-live-validation.md`。
+
 | source_agent | target_toml | status | claude_specific_fields_removed | behavior_differences |
 | --- | --- | --- | --- | --- |
 | .claude/agents/accessibility-specialist.md | .codex/agents/accessibility-specialist.toml | converted | tools, model, maxTurns | 继承当前 Codex 会话权限；关键产品决策才询问；禁止递归委派和自主 push。 |

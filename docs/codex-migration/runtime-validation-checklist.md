@@ -13,6 +13,6 @@
 - [x] 当前 Codex 任务已实际加载固定包版本 Godot MCP；七项受限工具均可调用。证据：`docs/runtime-evidence/godot-mcp-live-validation.md`。
 - [x] 已实际调用 get Godot version、list projects、project info；版本为 `4.7.1.stable.official.a13da4feb`，发现 `demo/project.godot`，并核对项目声明名称与主场景。
 - [x] 已实际调用 launch editor、run project、get debug output、stop project；本轮 MCP 输出含两个运行标记且无错误，停止动作仅作用于本轮运行实例。
-- [ ] 在新的 Codex App 任务中确认 73 个下游 Skill、`game-studio-router` 与 49 个自定义 Agent 可发现。
-- [ ] 在受信任项目中审阅并信任 Hooks，逐项触发 SessionStart、PreToolUse、PostToolUse、Pre/PostCompact、SubagentStart/Stop、Stop。
-- [ ] 确认 `notify.sh` 仍为 unsupported，未误报为已转换。
+- [ ] 确认 73 个下游 Skill、`game-studio-router` 与 49 个自定义 Agent 可发现。当前已完成全量静态完整性、Router 运行观察、五个 Skill 与三个 Agent 的代表性调用；当前表面没有全量运行时注册列表接口。
+- [x] 用户已确认当前 Hook 哈希受信任，`hooks_enabled=yes`；完成安全 Git 与 `qa-lead` 只读探针。Desktop 表面未暴露 SessionStart、PreToolUse、PostToolUse、SubagentStart/Stop 或 Stop 的真实事件回执，准确记录为 `lifecycle_hook_runtime_observability=not_exposed_by_current_desktop_surface`。Windows 无 PATH Python 的配置命令直接调用已通过，但不能替代生命周期证据；Pre/PostCompact 保持未人为触发。
+- [x] 确认 `notify.sh` 仍为 unsupported，未误报为已转换或已运行。
