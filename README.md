@@ -10,3 +10,7 @@ Codex 适配层位于 `AGENTS.md`、`.agents/skills/`、`.codex/agents/`、`.cod
 当前统计：49 个自定义 Agent、73 个下游 Skill、1 个自动路由 Skill、11 个路径级规则映射。首次使用前请在 Codex 中信任项目级配置与 Hooks；用户可自然描述游戏开发任务交给 `game-studio-router`，也可显式调用 `$start`、`$help`、`$project-stage-detect` 或其他下游 Skill。
 
 最小运行验收项目位于 `demo/`。使用 `python tools/verify_godot_runtime.py` 验证固定 Godot 路径、Demo、headless 日志、MCP 0.1.1 配置和七工具白名单；完整步骤与当前延期项见 `docs/codex-migration/runtime-validation-checklist.md`。
+
+## Phase 2B 实时 MCP 验收
+
+2026-07-17 已在当前 Codex 会话通过 Godot MCP 实际调用全部七项受限工具，并完成编辑器启动、Demo 运行、调试输出读取及仅停止本轮运行实例。新鲜输出含 `CODEX_GODOT_RUNTIME_START` 与 `CODEX_GODOT_RUNTIME_READY`，错误列表为空。详见 `docs/runtime-evidence/godot-mcp-live-validation.md`；不会把此前 CLI 日志当作 MCP 验收证据。

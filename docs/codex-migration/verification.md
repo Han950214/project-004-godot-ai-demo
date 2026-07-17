@@ -19,4 +19,8 @@ git diff --check
 
 MCP 配置必须使用固定 `E:\Program Files\nodejs\npx.cmd`，且拒绝 `npx`、`npx.ps1`、PowerShell 启动器和 ExecutionPolicy/Bypass 参数。超时只终止验证器直接启动的 Godot 主进程。FakeRunner 单元测试只验证命令和判定逻辑，不代替真实 Godot 原生命令矩阵。
 
-Codex CLI、Hook 实际加载、Skill/Agent 实际发现和 Godot MCP 工具调用仍需独立运行验收；不得从静态配置或 Godot CLI 结果推断 MCP 已被当前会话加载。
+Codex CLI、Hook 实际加载、Skill/Agent 实际发现和 Godot MCP 工具调用均须独立运行验收；不得从静态配置或 Godot CLI 结果推断 MCP 已被当前会话加载。
+
+## Phase 2B 实时 MCP 验证
+
+2026-07-17 的当前 Codex 会话已完成 Godot MCP 七项工具的独立实际调用。`get_debug_output` 提供本轮运行实例的 `CODEX_GODOT_RUNTIME_START`、`CODEX_GODOT_RUNTIME_READY` 和空错误列表；随后 `stop_project` 仅停止该实例。详见 `docs/runtime-evidence/godot-mcp-live-validation.md`。该结果不替代后续 Phase 2C 的 Skills、Agents 和 Hooks 实时发现验收。

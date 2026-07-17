@@ -10,9 +10,9 @@
 - [x] console EXE 的 `--version`、官方 `--import` 和 headless runtime 命令均退出 0；runtime 日志包含两个确定性标记。
 - [x] 自动验证器改用 console EXE，导入入口改为 `--import`，并保留非零退出码、Godot 错误和缺失标记的硬失败门禁。
 - [x] 项目级沙箱仅允许 self-contained `editor_data/` 写入；console `--version`、`--import` 与 headless runtime 均退出 0，两个运行标记存在且输出无 Godot `ERROR`。
-- [ ] 重启或新建 Codex 任务，确认 MCP server 以固定包版本启动。当前状态：`deferred_restart_required`。
-- [ ] 调用 get Godot version、list projects、project info。当前状态：`deferred_restart_required`。
-- [ ] 调用 launch editor、run project、get debug output、stop project。当前状态：`deferred_restart_required`。
+- [x] 当前 Codex 任务已实际加载固定包版本 Godot MCP；七项受限工具均可调用。证据：`docs/runtime-evidence/godot-mcp-live-validation.md`。
+- [x] 已实际调用 get Godot version、list projects、project info；版本为 `4.7.1.stable.official.a13da4feb`，发现 `demo/project.godot`，并核对项目声明名称与主场景。
+- [x] 已实际调用 launch editor、run project、get debug output、stop project；本轮 MCP 输出含两个运行标记且无错误，停止动作仅作用于本轮运行实例。
 - [ ] 在新的 Codex App 任务中确认 73 个下游 Skill、`game-studio-router` 与 49 个自定义 Agent 可发现。
 - [ ] 在受信任项目中审阅并信任 Hooks，逐项触发 SessionStart、PreToolUse、PostToolUse、Pre/PostCompact、SubagentStart/Stop、Stop。
 - [ ] 确认 `notify.sh` 仍为 unsupported，未误报为已转换。
