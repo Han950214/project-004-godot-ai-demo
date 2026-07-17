@@ -6,6 +6,10 @@
 - [x] 完成 `demo/` 项目识别、编辑器解析、headless 主场景运行和确定性日志验证。
 - [x] 设置不含凭据的固定 `GODOT_PATH`，在 `.codex/config.toml` 启用固定版本 Godot MCP。
 - [x] 将 MCP 白名单限制为七个读取、启动、调试和停止工具；未启用场景或资源写入工具。
+- [x] Windows MCP 启动命令固定为 `E:\Program Files\nodejs\npx.cmd`，以避免 `command = "npx"` 解析为 `npx.ps1`；未修改 PowerShell Execution Policy。
+- [x] console EXE 的 `--version`、官方 `--import` 和 headless runtime 命令均退出 0；runtime 日志包含两个确定性标记。
+- [x] 自动验证器改用 console EXE，导入入口改为 `--import`，并保留非零退出码、Godot 错误和缺失标记的硬失败门禁。
+- [x] 项目级沙箱仅允许 self-contained `editor_data/` 写入；console `--version`、`--import` 与 headless runtime 均退出 0，两个运行标记存在且输出无 Godot `ERROR`。
 - [ ] 重启或新建 Codex 任务，确认 MCP server 以固定包版本启动。当前状态：`deferred_restart_required`。
 - [ ] 调用 get Godot version、list projects、project info。当前状态：`deferred_restart_required`。
 - [ ] 调用 launch editor、run project、get debug output、stop project。当前状态：`deferred_restart_required`。

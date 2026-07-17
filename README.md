@@ -1,6 +1,8 @@
 
 # Codex Game Studio
 
+Windows 运行验证使用项目级 `sandbox_mode = "workspace-write"`，唯一额外可写根为 `E:\Workspace\tools\Godot\4.7.1\editor_data`。该边界仅支持 Godot 4.7.1 自包含编辑器保存设置与缓存，不启用网络访问，也不授予整个 Godot 安装目录写权限。Godot console 的版本、`--import` 和 headless Demo 运行已在此边界下通过；Phase 2B MCP Live Validation 仍须在 MCP 重载后的新任务中执行。
+
 这是基于 Claude Code Game Studios v1.0.0 的非官方 Codex 适配项目。固定上游 commit 为 `984023ddac0d5e27624f2baacde6105e45de375f`，完整未修改快照位于 `upstream/claude-code-game-studios-v1.0.0/`。
 
 Codex 适配层位于 `AGENTS.md`、`.agents/skills/`、`.codex/agents/`、`.codex/hooks.json`、`.codex/rules/` 和 `.codex/config.toml`。静态迁移与 Godot 4.7.1 Stable 便携部署、CLI、项目解析及 headless Demo 运行验收已经完成；当前任务尚未重新加载新启用的项目级 Godot MCP，因此七项 MCP 实际工具调用留待重启后的 Phase 2B，不宣称所有 Claude Hook 与 Codex 完全等价。

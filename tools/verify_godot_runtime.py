@@ -10,10 +10,15 @@ from collections.abc import Callable, Sequence
 
 
 EXPECTED_VERSION = "4.7.1.stable"
-EXPECTED_GODOT_PATH = pathlib.Path(
+EXPECTED_GODOT_GUI_PATH = pathlib.Path(
     r"E:\Workspace\tools\Godot\4.7.1\Godot_v4.7.1-stable_win64.exe"
 )
+EXPECTED_GODOT_CONSOLE_PATH = pathlib.Path(
+    r"E:\Workspace\tools\Godot\4.7.1\Godot_v4.7.1-stable_win64_console.exe"
+)
 EXPECTED_MCP_PACKAGE = "@coding-solo/godot-mcp@0.1.1"
+EXPECTED_NPX_COMMAND = r"E:\Program Files\nodejs\npx.cmd"
+EXPECTED_SANDBOX_WRITABLE_ROOT = r"E:\Workspace\tools\Godot\4.7.1\editor_data"
 EXPECTED_MCP_TOOLS = (
     "get_godot_version",
     "list_projects",
@@ -55,6 +60,13 @@ def _command_output(result: subprocess.CompletedProcess[str]) -> str:
     return "\n".join(part for part in (result.stdout, result.stderr) if part)
 
 
+def _format_exit_code(returncode: int) -> str:
+    unsigned = returncode & 0xFFFFFFFF
+    if returncode < 0:
+        return f"{returncode} (unsigned {unsigned}, 0x{unsigned:08X})"
+    return f"{returncode} (0x{unsigned:08X})"
+
+
 def _run(
     runner: CommandRunner,
     command: list[str],
@@ -81,21 +93,53 @@ def _run(
         return None, ""
     output = _command_output(result)
     if result.returncode != 0:
-        errors.append(f"{label} failed with exit code {result.returncode}")
+        errors.append(f"{label} failed with exit code {_format_exit_code(result.returncode)}")
     return result, output
 
 
 def _verify_mcp(root: pathlib.Path, errors: list[str], summary: dict[str, object]) -> None:
     config = _read_toml(root / ".codex" / "config.toml", errors)
+    if config.get("sandbox_mode") != "workspace-write":
+        errors.append("Codex sandbox_mode must be workspace-write")
+    workspace_write = config.get("sandbox_workspace_write")
+    writable_roots = (
+        workspace_write.get("writable_roots") if isinstance(workspace_write, dict) else None
+    )
+    if writable_roots != [EXPECTED_SANDBOX_WRITABLE_ROOT]:
+        errors.append(
+            "Codex sandbox writable_roots must exactly match the Godot editor_data directory"
+        )
+    if config.get("network_access") is True or (
+        isinstance(workspace_write, dict) and workspace_write.get("network_access") is True
+    ):
+        errors.append("Codex sandbox network_access must not be enabled")
+
     servers = config.get("mcp_servers") if isinstance(config, dict) else None
     godot = servers.get("godot") if isinstance(servers, dict) else None
     if not isinstance(godot, dict):
         errors.append("missing project Godot MCP config")
         return
 
+    command = godot.get("command")
+    if command != EXPECTED_NPX_COMMAND:
+        errors.append(f"Godot MCP command must be {EXPECTED_NPX_COMMAND}")
+    if command == "npx":
+        errors.append("Godot MCP must not use the PowerShell-resolved npx command")
+    if isinstance(command, str) and command.lower().endswith("npx.ps1"):
+        errors.append("Godot MCP must not use npx.ps1")
+    if isinstance(command, str) and pathlib.PureWindowsPath(command).name.lower() in {
+        "powershell.exe", "pwsh.exe",
+    }:
+        errors.append("Godot MCP must not launch through PowerShell")
     args = godot.get("args")
     if args != ["-y", EXPECTED_MCP_PACKAGE]:
         errors.append("Godot MCP package must be pinned to @coding-solo/godot-mcp@0.1.1")
+    if isinstance(args, list) and any(
+        isinstance(arg, str)
+        and ("executionpolicy" in arg.lower() or "bypass" in arg.lower())
+        for arg in args
+    ):
+        errors.append("Godot MCP arguments must not change PowerShell execution policy")
     if godot.get("enabled") is not True:
         errors.append("Godot MCP must be enabled")
     if godot.get("required") is not False:
@@ -108,7 +152,7 @@ def _verify_mcp(root: pathlib.Path, errors: list[str], summary: dict[str, object
             "Godot MCP enabled_tools must exactly match the seven runtime validation tools"
         )
     env = godot.get("env")
-    expected_path = str(EXPECTED_GODOT_PATH)
+    expected_path = str(EXPECTED_GODOT_GUI_PATH)
     if not isinstance(env, dict) or env.get("GODOT_PATH") != expected_path:
         errors.append(f"Godot MCP GODOT_PATH must be {expected_path}")
 
@@ -188,11 +232,13 @@ def _verify_no_tracked_binary(
 def verify_runtime(
     root: pathlib.Path,
     *,
-    godot_executable: pathlib.Path = EXPECTED_GODOT_PATH,
+    godot_executable: pathlib.Path = EXPECTED_GODOT_CONSOLE_PATH,
+    godot_gui_executable: pathlib.Path = EXPECTED_GODOT_GUI_PATH,
     runner: CommandRunner = run_command,
 ) -> tuple[list[str], dict[str, object]]:
     root = root.resolve()
     godot_executable = godot_executable.resolve()
+    godot_gui_executable = godot_gui_executable.resolve()
     errors: list[str] = []
     summary: dict[str, object] = {
         "godot_version": "",
@@ -206,8 +252,10 @@ def verify_runtime(
         "godot_errors_found": False,
     }
 
+    if not godot_gui_executable.is_file():
+        errors.append(f"Godot GUI executable is missing: {godot_gui_executable}")
     if not godot_executable.is_file():
-        errors.append(f"Godot executable is missing: {godot_executable}")
+        errors.append(f"Godot Console executable is missing: {godot_executable}")
     if not any((godot_executable.parent / name).is_file() for name in ("_sc_", "._sc_")):
         errors.append(f"Godot self-contained marker is missing beside {godot_executable.name}")
     _verify_mcp(root, errors, summary)
@@ -215,7 +263,7 @@ def verify_runtime(
     _verify_demo(root, errors)
     summary["demo_project_valid"] = len(errors) == demo_error_count
     _verify_no_tracked_binary(root, runner, errors, summary)
-    if not godot_executable.is_file():
+    if not godot_gui_executable.is_file() or not godot_executable.is_file():
         return errors, summary
 
     version_result, version_output = _run(
@@ -236,25 +284,42 @@ def verify_runtime(
         [
             str(godot_executable),
             "--headless",
-            "--editor",
             "--path",
             str(demo),
-            "--quit-after",
-            "2",
+            "--import",
+            "--verbose",
         ],
         timeout=60,
         errors=errors,
-        label="Godot headless editor import",
+        label="Godot headless import",
     )
+    import_errors = [
+        pattern.pattern for pattern in GODOT_ERROR_PATTERNS if pattern.search(import_output)
+    ]
+    if import_errors:
+        errors.append(f"Godot import output contains errors: {import_errors}")
+        summary["godot_errors_found"] = True
+    if import_result is None or import_result.returncode != 0 or import_errors:
+        return errors, summary
+
     runtime_result, runtime_output = _run(
         runner,
-        [str(godot_executable), "--headless", "--path", str(demo), "--quit-after", "300"],
+        [
+            str(godot_executable),
+            "--headless",
+            "--path",
+            str(demo),
+            "--quit-after",
+            "300",
+            "--verbose",
+        ],
         timeout=30,
         errors=errors,
         label="Godot headless project run",
     )
-    combined_output = "\n".join((import_output, runtime_output))
-    godot_errors = [pattern.pattern for pattern in GODOT_ERROR_PATTERNS if pattern.search(combined_output)]
+    godot_errors = [
+        pattern.pattern for pattern in GODOT_ERROR_PATTERNS if pattern.search(runtime_output)
+    ]
     if godot_errors:
         errors.append(f"Godot output contains runtime errors: {godot_errors}")
     start_found = RUNTIME_START_MARKER in runtime_output
@@ -264,10 +329,11 @@ def verify_runtime(
     if not ready_found:
         errors.append(f"runtime output lacks marker: {RUNTIME_READY_MARKER}")
     summary["headless_run"] = (
-        import_result is not None
-        and import_result.returncode == 0
-        and runtime_result is not None
+        runtime_result is not None
         and runtime_result.returncode == 0
+        and not godot_errors
+        and start_found
+        and ready_found
     )
     summary["runtime_start_marker_found"] = start_found
     summary["runtime_ready_marker_found"] = ready_found

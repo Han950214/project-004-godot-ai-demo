@@ -1,5 +1,7 @@
 # Godot 4.7.1 便携部署证据
 
+当前受限沙箱无法在线构建 Authenticode 证书链，因此本阶段签名复核记为 `not_available_in_sandbox`，并沿用 Phase 2A 已记录的 `Valid` 结果。Phase 2A 只记录 Release ZIP 哈希，未记录解压后 EXE 哈希，所以不能证明二进制自 Phase 2A 起未变化；本阶段为 GUI 与 console EXE 建立当前本地 SHA-256 基线，见 `crash-isolation/README.md`。未联网补证书链，也未使用管理员权限。
+
 验证日期：2026-07-16（Asia/Shanghai）
 
 | 项目 | 结果 |

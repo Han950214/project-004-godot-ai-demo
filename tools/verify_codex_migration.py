@@ -14,7 +14,9 @@ EXPECTED_TAG = "v1.0.0"
 EXPECTED_COMMIT = "984023ddac0d5e27624f2baacde6105e45de375f"
 EXPECTED_TREE = "45e93bee12c3f1d80052f7406f0180e9bece8382"
 EXPECTED_MCP_VERSION = "0.1.1"
+EXPECTED_NPX_COMMAND = r"E:\Program Files\nodejs\npx.cmd"
 EXPECTED_GODOT_PATH = r"E:\Workspace\tools\Godot\4.7.1\Godot_v4.7.1-stable_win64.exe"
+EXPECTED_SANDBOX_WRITABLE_ROOT = r"E:\Workspace\tools\Godot\4.7.1\editor_data"
 EXPECTED_GODOT_MCP_TOOLS = (
     "get_godot_version",
     "list_projects",
@@ -464,6 +466,20 @@ def verify_repository(root: pathlib.Path) -> tuple[list[str], dict[str, object]]
         errors.append("missing root AGENTS.md")
 
     config = read_toml(root / ".codex" / "config.toml", errors)
+    if config.get("sandbox_mode") != "workspace-write":
+        errors.append("Codex sandbox_mode must be workspace-write")
+    workspace_write = config.get("sandbox_workspace_write")
+    writable_roots = (
+        workspace_write.get("writable_roots") if isinstance(workspace_write, dict) else None
+    )
+    if writable_roots != [EXPECTED_SANDBOX_WRITABLE_ROOT]:
+        errors.append(
+            "Codex sandbox writable_roots must exactly match the Godot editor_data directory"
+        )
+    if config.get("network_access") is True or (
+        isinstance(workspace_write, dict) and workspace_write.get("network_access") is True
+    ):
+        errors.append("Codex sandbox network_access must not be enabled")
     agents_config = config.get("agents") if isinstance(config, dict) else None
     if not isinstance(agents_config, dict) or agents_config.get("max_threads") != 4 or agents_config.get("max_depth") != 1:
         errors.append("invalid [agents] limits in config.toml")
@@ -475,9 +491,26 @@ def verify_repository(root: pathlib.Path) -> tuple[list[str], dict[str, object]]
     if not isinstance(godot, dict):
         errors.append("missing project Godot MCP config")
     else:
+        command = godot.get("command")
+        if command != EXPECTED_NPX_COMMAND:
+            errors.append(f"Godot MCP command must be {EXPECTED_NPX_COMMAND}")
+        if command == "npx":
+            errors.append("Godot MCP must not use the PowerShell-resolved npx command")
+        if isinstance(command, str) and command.lower().endswith("npx.ps1"):
+            errors.append("Godot MCP must not use npx.ps1")
+        if isinstance(command, str) and pathlib.PureWindowsPath(command).name.lower() in {
+            "powershell.exe", "pwsh.exe",
+        }:
+            errors.append("Godot MCP must not launch through PowerShell")
         args = godot.get("args")
         if args != ["-y", f"@coding-solo/godot-mcp@{EXPECTED_MCP_VERSION}"]:
             errors.append("Godot MCP package is not pinned")
+        if isinstance(args, list) and any(
+            isinstance(arg, str)
+            and ("executionpolicy" in arg.lower() or "bypass" in arg.lower())
+            for arg in args
+        ):
+            errors.append("Godot MCP arguments must not change PowerShell execution policy")
         if godot.get("enabled") is not True:
             errors.append("Godot MCP must be enabled after portable Godot validation")
         if godot.get("required") is not False:

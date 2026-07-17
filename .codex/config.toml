@@ -1,3 +1,9 @@
+sandbox_mode = "workspace-write"
+
+[sandbox_workspace_write]
+writable_roots = [
+  'E:\Workspace\tools\Godot\4.7.1\editor_data',
+]
 
 [agents]
 max_threads = 4
@@ -7,7 +13,7 @@ max_depth = 1
 hooks = true
 
 [mcp_servers.godot]
-command = "npx"
+command = 'E:\Program Files\nodejs\npx.cmd'
 args = ["-y", "@coding-solo/godot-mcp@0.1.1"]
 cwd = 'E:\Workspace\projects\game\project_004_godot_ai_demo'
 startup_timeout_sec = 30

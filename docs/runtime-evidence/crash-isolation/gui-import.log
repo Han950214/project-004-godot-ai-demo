@@ -1,0 +1,44 @@
+Godot Engine v4.7.1.stable.official.a13da4feb - https://godotengine.org
+TextServer: Added interface "Dummy"
+TextServer: Added interface "ICU / HarfBuzz / Graphite (Built-in)"
+Using "default" pen tablet driver...
+
+TextServer: Primary interface set to: "ICU / HarfBuzz / Graphite (Built-in)".
+CORE API HASH: 3769296884
+EDITOR API HASH: 3146738256
+SceneTreeFTI: traversal method DEFAULT
+Loading resource: E:/Workspace/tools/Godot/4.7.1/editor_data/editor_settings-4.7.tres remapped: E:/Workspace/tools/Godot/4.7.1/editor_data/editor_settings-4.7.tres
+Completed load for: 'E:/Workspace/tools/Godot/4.7.1/editor_data/editor_settings-4.7.tres' remapped 'E:/Workspace/tools/Godot/4.7.1/editor_data/editor_settings-4.7.tres' at thread -1
+EditorSettings: Load OK!
+EditorTheme: Generating new theme for the config '3810048042'.
+EditorTheme: Generating new icons.
+EditorTheme: Generating new fonts.
+EditorTheme: Generating new styles.
+Loading resource: E:/Workspace/tools/Godot/4.7.1/editor_data/cache/editor_doc_cache-4.7.res remapped: E:/Workspace/tools/Godot/4.7.1/editor_data/cache/editor_doc_cache-4.7.res
+Loaded system CA certificates
+Completed load for: 'E:/Workspace/tools/Godot/4.7.1/editor_data/cache/editor_doc_cache-4.7.res' remapped 'E:/Workspace/tools/Godot/4.7.1/editor_data/cache/editor_doc_cache-4.7.res' at thread -1
+ERROR: Could not open 'user://' directory: 'user://'.
+   at: _get_and_create_snapshot_storage_dir (modules/objectdb_profiler/editor/objectdb_profiler_panel.cpp:157)
+[   0% ] first_scan_filesystem | Started 项目初始化 (5 steps)
+[   0% ] first_scan_filesystem | 正在扫描文件结构……
+[  16% ] first_scan_filesystem | 正在加载全局类名……
+[  33% ] first_scan_filesystem | 正在校验 GDExtension……
+[  50% ] first_scan_filesystem | 正在创建自动加载脚本……
+[  66% ] first_scan_filesystem | 正在初始化插件……
+[  83% ] first_scan_filesystem | 正在启动文件扫描……
+[ DONE ] first_scan_filesystem
+
+[   0% ] loading_editor_layout | Started 正在加载编辑器 (5 steps)
+[   0% ] loading_editor_layout | 正在加载编辑器布局……
+[  16% ] loading_editor_layout | 正在加载停靠面板……
+[ DONE ] loading_editor_layout
+
+Loading resource: res://scenes/main.tscn remapped: res://scenes/main.tscn
+Loading resource: res://scripts/main.gd remapped: res://scripts/main.gd
+Completed load for: 'res://scripts/main.gd' remapped 'res://scripts/main.gd' at thread -1
+Completed load for: 'res://scenes/main.tscn' remapped 'res://scenes/main.tscn' at thread -1
+Script docs haven't been properly loaded or regenerated, so don't save them to disk.
+ERROR: Cannot save file 'E:/Workspace/tools/Godot/4.7.1/editor_data/editor_settings-4.7.tres'.
+   at: save (scene/resources/resource_format_text.cpp:1768)
+ERROR: Error saving editor settings to E:/Workspace/tools/Godot/4.7.1/editor_data/editor_settings-4.7.tres
+   at: save (editor/settings/editor_settings.cpp:1525)
